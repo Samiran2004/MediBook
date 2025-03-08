@@ -2,6 +2,7 @@ import express from "express";
 import { StatusCodes } from "http-status-codes";
 const router = express.Router();
 import controllers from "../../controllers/index.controllers.js";
+import upload from "../../middlewares/multer.middleware.js";
 
 /**
  * Check health...
@@ -25,6 +26,6 @@ router.get('/health', (req, res, next) => {
  * path: /api/v1/signup
  */
 
-router.post('/signup', controllers.SignUp);
+router.post('/signup', upload.single('profileimage'), controllers.SignUp);
 
 export default router;
