@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+:root {
+  --primary-color: #f0f0f0;
+  --secondary-color: #407bff;
+  --tertiary-color: #fff;
+  --text-color: #828282;
+  --hover-color: #3a66ff;
+  --button-padding: 0.5rem 2rem;
+  --button-radius: 8px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,19 +21,13 @@ html,
 body {
   height: 100%;
   width: 100%;
-}
-
-:root {
-  --primary-color: #f0f0f0;
-  --secondary-color: #407bff;
-  --tertiary-color: #fff;
-  --text-color: #828282;
-  --hover-color: #3a66ff;
-}
-
-body {
   background-color: var(--primary-color);
   color: var(--text-color);
+}
+
+main {
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 nav {
@@ -49,10 +53,6 @@ nav ul {
   align-items: center;
 }
 
-nav ul li {
-  font-size: 1rem;
-}
-
 nav ul li a {
   color: var(--text-color);
 }
@@ -61,26 +61,68 @@ nav ul li a:hover {
   color: var(--hover-color);
 }
 
-nav button {
-  padding: 0.5rem 2rem;
+nav button,
+#hero-left button {
+  padding: var(--button-padding);
   background-color: var(--secondary-color);
   outline: none;
   border: none;
   color: var(--tertiary-color);
   font-size: 1.1rem;
-  border-radius: 8px;
+  border-radius: var(--button-radius);
   cursor: pointer;
 }
 
-nav button:hover {
+nav button:hover,
+#hero-left button:hover {
   background-color: var(--hover-color);
 }
 
-nav button:active {
+nav button:active,
+#hero-left button:active {
   transform: scale(0.98);
 }
 
 #nav-left h1 {
-    font-size: 1.5rem;
-    font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+#hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 1.5rem;
+}
+
+#hero-left {
+  width: 40%;
+}
+
+#hero-left h1 {
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--secondary-color);
+}
+
+#hero-left h1 span {
+  text-transform: uppercase;
+}
+
+#hero-left p {
+  font-size: 1rem;
+  margin: 1rem 0 2rem;
+  text-align: justify;
+}
+
+#hero-right {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#hero-right img {
+  width: 70%;
 }
