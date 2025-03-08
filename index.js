@@ -2,6 +2,7 @@ import express from "express";
 import figlet from "figlet";
 import configs from "./configs/index.configs.js";
 import Db_Connect from "./services/connectDb.js";
+import frontendRoute from "./routes/v2/index.routes.v2.js";
 
 const app = express();
 
@@ -21,9 +22,7 @@ app.use(express.static("public"));
 //view engine
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.get("/", frontendRoute);
 
 app.listen(configs.PORT, (err) => {
   if (err) {
