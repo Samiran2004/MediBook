@@ -1,8 +1,13 @@
 import express from "express";
 import figlet from "figlet";
 import configs from "./configs/index.configs.js";
+import Db_Connect from "./services/connectDb.js";
 
 const app = express();
+
+// Connect Database...
+const db_URI = configs.ENV === 'development' ? configs.DB_URI : configs.MONGODB_URI;
+Db_Connect(db_URI);
 
 //Middleware
 app.use(express.json());
@@ -30,8 +35,8 @@ app.listen(configs.PORT, (err) => {
       console.log(data);
     });
   } else {
-    figlet(`S e r v e r   c o n n e c t e d   o n  \np o r t :  ${configs.PORT}`, (err, data)=>{
-      if(err) {
+    figlet(`S e r v e r   c o n n e c t e d   o n  \np o r t :  ${configs.PORT}`, (err, data) => {
+      if (err) {
         console.log("Something went wrong in figlet...");
         return;
       }
