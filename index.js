@@ -1,10 +1,8 @@
 import express from "express";
-import dotenv from "dotenv";
+import figlet from "figlet";
+import configs from "./configs/index.configs.js";
 
-dotenv.config();
 const app = express();
-
-const PORT = process.env.PORT || 3000;
 
 //Middleware
 app.use(express.json());
@@ -21,6 +19,22 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(configs.PORT, (err) => {
+  if (err) {
+    figlet("E r r o r  t o  c o n n e c t  s e r v e r  !❌❌❌", (err, data) => {
+      if (err) {
+        console.log("Something went wrong in figlet...");
+        return;
+      }
+      console.log(data);
+    });
+  } else {
+    figlet(`S e r v e r   c o n n e c t e d   o n  \np o r t :  ${configs.PORT}`, (err, data)=>{
+      if(err) {
+        console.log("Something went wrong in figlet...");
+        return;
+      }
+      console.log(data);
+    });
+  }
 });
