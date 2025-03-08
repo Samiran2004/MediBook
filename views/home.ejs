@@ -1,43 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Medicon</title>
-    <link rel="stylesheet" href="/stylesheets/index.css">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medicon</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/stylesheets/index.css">
   </head>
-  <body>
-    <main>
-      <!-- navbar section  -->
-      <nav>
-        <div id="nav-left">
-          <a href="/">
-            <h1>MediCon</h1>
-          </a>
-        </div>
 
-        <div id="nav-right">
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/service">Service</a></li>
-            <li><a href="/links">Quick Links</a></li>
-            <li><button>Login</button></li>
+<body>
+  <main>
+    <!-- navbar section  -->
+    <nav>
+      <div id="nav-left">
+        <a href="/">
+          <h1>MediCon</h1>
+        </a>
+      </div>
+
+      <div id="nav-right">
+        <ul>
+          <li><a href="/"><span><i class="ri-home-2-line"></i></span>Home</a></li>
+          <li><a href="/service"><span><i class="ri-service-line"></i></span>Service</a></li>
+          <li><a href="/links"><span><i class="ri-links-line"></i></span>Quick Links</a></li>
+          <li><button>Login</button></li>
           </ul>
-        </div>
-      </nav>
+          </div>
+          </nav>
 
-      <!-- hero section  -->
-      <section id="hero">
-        <div id="hero-left">
-          <h1>Welcome to <span>MEDICON</span></h1>
-          <p>Connect with top medical professionals at the click of a button. Schedule appointments, manage your visits, and stay on top of your healthcare needs with ease.</p>
-          <button>Get Started</button>
+    <!-- hero section  -->
+    <section id="hero">
+      <div id="hero-left">
+        <h1>Welcome to <span>MEDICON</span></h1>
+        <p>Connect with top medical professionals at the click of a button. Schedule appointments, manage your visits,
+          and stay on top of your healthcare needs with ease.</p>
+        <button>Get Started</button>
         </div>
 
-        <div id="hero-right">
-          <img src="/assets/hero-sec.svg" alt="hero" />
+      <div id="hero-right">
+        <img src="/assets/hero-sec.svg" alt="hero" />
+      </div>
+    </section>
+    
+    <!-- Feature Section -->
+    <section class="feature-section">
+      <div class="feature-container">
+        <div class="feature-card">
+          <span class="icons"><i class="ri-hospital-line"></i></span>
+          <h3>AI Health Diagnosis</h3>
+          <p>Cutting-edge AI technology for accurate health diagnostics.</p>
         </div>
-    </main>
-    <script src="/javascripts/index.js"></script>
+        <div class="feature-card">
+          <span class="icons"><i class="ri-calendar-fill"></i></span>
+          <h3>Appointment Booking</h3>
+          <p>Easy and efficient appointment booking system.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icons"><i class="ri-time-fill"></i></span>
+          <h3>24/7 Support</h3>
+          <p>Round-the-clock customer support for all your queries.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icons"><i class="ri-heart-fill"></i></span>
+          <h3>Personalized Health Plans</h3>
+          <p>Customized health plans tailored to individual needs.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="premium-section">
+      <div class="premium-header">
+        <span>
+          <i class="ri-gemini-fill"></i>
+        </span>
+        Premium Features
+        <span>
+          <i class="ri-gemini-fill"></i>
+        </span>
+      </div>
+      <div class="premium-container">
+        <div class="premium-card">
+          <h3>Advanced Diagnostics</h3>
+          <p>Get detailed health diagnostics with our premium AI technology.</p>
+        </div>
+        <div class="premium-card">
+          <h3>Priority Support</h3>
+          <p>Enjoy expedited support with dedicated priority service.</p>
+        </div>
+        <div class="premium-card">
+          <h3>Exclusive Health Plans</h3>
+          <p>Access exclusive, tailored health plans designed for optimal care.</p>
+        </div>
+        <div class="premium-card">
+          <h3>Personal Health Coach</h3>
+          <p>Work with a personal health coach to achieve your wellness goals.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer Section -->
+  <footer id="footer">
+    <p>
+      <script>document.write(new Date().getFullYear());</script> MediCon. All Rights Reserved.
+    </p>
+  </footer>
+  <script src="/javascripts/index.js"></script>
   </body>
+
 </html>
