@@ -3,6 +3,7 @@ import figlet from "figlet";
 import configs from "./configs/index.configs.js";
 import Db_Connect from "./services/connectDb.js";
 import frontendRoute from "./routes/v2/index.routes.v2.js";
+import apiRoutes from "./routes/v1/index.routes.v1.js";
 
 const app = express();
 
@@ -22,7 +23,11 @@ app.use(express.static("public"));
 //view engine
 app.set("view engine", "ejs");
 
-app.get("/", frontendRoute);
+// Frontend entrypoint...
+app.use("/", frontendRoute);
+
+// Apis entry point...
+app.use('/api/v1', apiRoutes);
 
 app.listen(configs.PORT, (err) => {
   if (err) {
