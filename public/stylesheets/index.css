@@ -17,11 +17,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-::selection {
-  background-color: var(--hover-color);
-  color: #fff;
-}
-
 html,
 body {
   height: 100%;

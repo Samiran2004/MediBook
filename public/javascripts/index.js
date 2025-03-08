@@ -31,21 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
   premiumCards.forEach((card) => card.classList.add("hidden"));
   animateOnScroll(premiumCards, "slide-in-side");
 
-  // Remove scale effect from only buttons
-  const navButtons = document.querySelectorAll("nav button, nav ul li a");
-  navButtons.forEach((item) => {
-    item.addEventListener("mouseover", () => {
-      item.style.transition = "background-color 0.3s ease";
-    });
-
-    item.addEventListener("click", () => {
-      item.style.backgroundColor = "var(--hover-color)";
-      setTimeout(() => {
-        item.style.backgroundColor = "var(--secondary-color)";
-      }, 300);
-    });
-  });
-
   // Keep scale effect on cards
   featureCards.forEach((card) => {
     card.addEventListener("mouseover", () => {
@@ -68,48 +53,64 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.transform = "scale(1)";
     });
   });
+
+  // Get all navigation links
+  const navLinks = document.querySelectorAll("#nav-right ul li a");
+
+  // Add active class to current page link
+  navLinks.forEach((link) => {
+    if (link.href === window.location.href) {
+      link.classList.add("active");
+    }
+
+    // Prevent default color change on click
+    link.addEventListener("click", (e) => {
+      navLinks.forEach((l) => l.classList.remove("active"));
+      link.classList.add("active");
+    });
+  });
 });
 
 const style = document.createElement("style");
 style.innerHTML = `
-  .hidden {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  
-  .slide-in {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .slide-up {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .slide-in-side {
-    opacity: 1;
-    transform: translateX(0);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  /* Creative Logo Design */
-  #nav-left h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    background-image: linear-gradient(45deg, #3a66ff, #3ddcff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  #nav-left h1:hover {
-    transform: scale(1.05) rotate(-2deg);
-    text-shadow: 2px 2px 15px rgba(58, 102, 255, 0.5);
-  }`;
+.hidden {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.slide-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-up {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-side {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Creative Logo Design */
+#nav-left h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  background-image: linear-gradient(45deg, #3a66ff, #3ddcff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+#nav-left h1:hover {
+  transform: scale(1.05) rotate(-2deg);
+  text-shadow: 2px 2px 15px rgba(58, 102, 255, 0.5);
+}`;
 document.head.appendChild(style);
