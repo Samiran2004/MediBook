@@ -1,5 +1,6 @@
 import express from "express";
 import figlet from "figlet";
+import cookieParser from "cookie-parser";
 import configs from "./configs/index.configs.js";
 import Db_Connect from "./services/connectDb.js";
 import frontendRoute from "./routes/v2/index.routes.v2.js";
@@ -14,6 +15,7 @@ Db_Connect(db_URI);
 //Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something went wrong!");
