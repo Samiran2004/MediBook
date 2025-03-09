@@ -1,4 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Hamburger menu toggle
+  const menuToggle = document.createElement("div");
+  menuToggle.id = "hamburger-menu";
+  menuToggle.innerHTML = `<i class="ri-menu-line"></i>`;
+  document
+    .querySelector("nav")
+    .insertBefore(menuToggle, document.getElementById("nav-right"));
+
+  const navRight = document.getElementById("nav-right");
+  menuToggle.addEventListener("click", () => {
+    navRight.classList.toggle("open");
+    menuToggle.innerHTML = navRight.classList.contains("open")
+      ? `<i class="ri-close-line"></i>`
+      : `<i class="ri-menu-line"></i>`;
+  });
+
   // Function to trigger slide effect when in viewport
   function animateOnScroll(elements, animationClass) {
     const observer = new IntersectionObserver(
@@ -71,46 +87,42 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Add responsive styles
 const style = document.createElement("style");
 style.innerHTML = `
-.hidden {
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-.slide-in {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide-up {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide-in-side {
-  opacity: 1;
-  transform: translateX(0);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Creative Logo Design */
-#nav-left h1 {
+#hamburger-menu {
+  display: none;
   font-size: 2rem;
-  font-weight: bold;
-  background-image: linear-gradient(45deg, #3a66ff, #3ddcff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  cursor: pointer;
+  color: var(--secondary-color);
 }
 
-#nav-left h1:hover {
-  transform: scale(1.05) rotate(-2deg);
-  text-shadow: 2px 2px 15px rgba(58, 102, 255, 0.5);
-}`;
+@media (max-width: 768px) {
+  #hamburger-menu {
+    display: block;
+  }
+
+  #nav-right {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: var(--tertiary-color);
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    padding: 1rem 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #nav-right.open {
+    display: flex;
+  }
+
+  #nav-right ul {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+`;
 document.head.appendChild(style);

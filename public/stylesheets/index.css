@@ -262,6 +262,11 @@ nav button:active,
 }
 
 @media (max-width: 768px) {
+  #hero {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+
   #hero-left {
     width: 100%;
     text-align: center;
@@ -282,6 +287,7 @@ nav button:active,
 
   .feature-section,
   .premium-section {
-    padding: 1rem;
+    padding: 2rem;
+    margin: 1rem;
   }
 }
