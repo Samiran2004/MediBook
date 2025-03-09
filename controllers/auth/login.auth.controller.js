@@ -50,7 +50,8 @@ const logincontroller = async (req, res, next) => {
                     RegId: Doctor.registrationId,
                     isVerified: Doctor.isVerified,
                     specialization: Doctor.specialization,
-                    profileimage: Doctor.profilepic
+                    profileimage: Doctor.profilepic,
+                    address: Doctor.address
                 }
                 // Create token...
                 const token = await JWT.sign(playLoad, configs.JWT_SECRET);

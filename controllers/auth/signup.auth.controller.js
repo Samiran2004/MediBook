@@ -14,9 +14,9 @@ const signupController = async (req, res, next) => {
         let role = typeof req.body.role === "string" ? req.body.role.toLowerCase() : "";
 
         if (role === 'doctor') {
-            const { name, email, phonenumber, password, specialization, registrationId } = req.body;
+            const { name, email, phonenumber, password, specialization, registrationId, location } = req.body;
 
-            if (!name || !email || !phonenumber || !password || !specialization || !registrationId) {
+            if (!name || !email || !phonenumber || !password || !specialization || !registrationId || !location) {
                 return res.status(StatusCodes.BAD_REQUEST).json({
                     status: 'Failed',
                     message: "Please enter all required fields!"
@@ -24,7 +24,13 @@ const signupController = async (req, res, next) => {
             }
 
             // Check if doctor already exists
-            const existingDoctor = await Models.DoctorModel.findOne({ email });
+            const existingDoctor = await Models.DoctorModel.findOne({
+                $or: [
+                  { email: email },
+                  { phonenumber: phonenumber },
+                  { registrationId: registrationId }
+                ]
+              });
 
             if (existingDoctor) {
                 return res.status(StatusCodes.BAD_REQUEST).json({
@@ -59,7 +65,8 @@ const signupController = async (req, res, next) => {
                 password: hashed_password,
                 profilepic: profileimage_url,
                 specialization,
-                registrationId
+                registrationId,
+                address: location,
             });
 
             // Save to DB
