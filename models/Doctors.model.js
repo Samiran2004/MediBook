@@ -56,6 +56,10 @@ const DoctorSchema = mongoose.Schema({
         required: true,
         unique: true
     },
+    address: {
+        type: String,
+        required: true
+    },
     isVerified: {
         type: Boolean,
         default: false
