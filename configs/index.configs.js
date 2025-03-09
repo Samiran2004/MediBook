@@ -10,7 +10,8 @@ const configs = {
     CLOUD_API_KEY: process.env.CLOUDINARY_API_KEY,
     CLOUD_API_SECRET: process.env.CLOUDINARY_API_SECRET,
     HASH_SECRET: process.env.HASH_SECRET,
-    SALT: process.env.HASH_SALT
+    SALT: process.env.HASH_SALT,
+    JWT_SECRET: process.env.JWT_SECRET
 }
 
 export default configs;

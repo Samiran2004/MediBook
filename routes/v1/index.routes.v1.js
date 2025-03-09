@@ -27,4 +27,10 @@ router.get('/health', (req, res, next) => {
  */
 router.post('/signup', upload.single('profileimage'), controllers.SignUp);
 
+/**
+ * Login
+ * path: /api/v1/login
+ */
+router.post('/login', controllers.Login);
+
 export default router;
