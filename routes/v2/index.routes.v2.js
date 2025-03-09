@@ -24,7 +24,14 @@ router.get('/signup', (req, res, next) => {
 router.get('/temp1', (req,res, next)=>{
     res.render("userSignup")
 })
-router.get('/temp2')
-router.get('/temp3')
+router.get("/temp2", (req, res, next) => {
+  res.render("userLogin");
+});
+router.get("/temp3", (req, res, next) => {
+  res.render("docSignup");
+});
+router.get("/temp4", (req, res, next) => {
+  res.render("docLogin");
+});
 
 export default router;
