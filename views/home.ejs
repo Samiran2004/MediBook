@@ -7,34 +7,14 @@
   <title>Medicon</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="/stylesheets/index.css" />
+  <link rel="stylesheet" href="/stylesheets/navbar.css" />
+  <link rel="stylesheet" href="/stylesheets/footer.css" />
 </head>
 
 <body>
   <main>
     <!-- navbar section  -->
-    <nav>
-      <div id="nav-left">
-        <a href="/">
-          <h1>MediCon</h1>
-        </a>
-      </div>
-
-      <div id="nav-right">
-        <ul>
-          <li>
-            <a href="/"><span><i class="ri-home-2-line"></i></span>Home</a>
-          </li>
-          <li>
-            <a href="/service"><span><i class="ri-service-line"></i></span>Service</a>
-          </li>
-          <li>
-            <a href="/links"><span><i class="ri-links-line"></i></span>Quick Links</a>
-          </li>
-          <li><a href="/logindashboard"><button>Login</button></a></li>
-        </ul>
-      </div>
-    </nav>
-
+    <%- include('partials/navbar') %>
     <!-- hero section  -->
     <section id="hero">
       <div id="hero-left">
@@ -113,16 +93,9 @@
         </div>
       </div>
     </section>
+    <!-- Footer Section -->
+        <%- include('partials/footer') %>
   </main>
-  <!-- Footer Section -->
-  <footer id="footer">
-    <p>
-      <script>
-        document.write(new Date().getFullYear());
-      </script>
-      MediCon. All Rights Reserved.
-    </p>
-  </footer>
   <script src="/javascripts/index.js"></script>
 </body>
 

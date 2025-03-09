@@ -1,0 +1,57 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--tertiary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--secondary-color);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+nav ul li a {
+  color: var(--text-color);
+}
+
+nav ul li a:hover {
+  color: var(--hover-color);
+}
+
+nav button,
+#hero-left button {
+  padding: var(--button-padding);
+  background-color: var(--secondary-color);
+  outline: none;
+  border: none;
+  color: var(--tertiary-color);
+  font-size: 1.1rem;
+  border-radius: var(--button-radius);
+  cursor: pointer;
+}
+
+nav button:hover,
+#hero-left button:hover {
+  background-color: var(--hover-color);
+}
+
+nav button:active,
+#hero-left button:active {
+  transform: scale(0.98);
+}
+
+#nav-left h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
