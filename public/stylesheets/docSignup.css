@@ -21,19 +21,19 @@ body {
     background: var(--primary-color);
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    flex-direction: column;
 }
 
 .container {
-    width: 100%;
+    width: 90%;
     max-width: 1000px;
+    margin: auto;
 }
 
 .box {
+    margin-top: 20px;
     background: var(--tertiary-color);
-    padding: 20px 40px;
+    padding: 10px 40px;
     border-radius: var(--button-radius);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -50,7 +50,7 @@ h2 {
 .form-row {
     display: flex;
     gap: 25px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .form-row .form-group {
@@ -59,7 +59,7 @@ h2 {
 }
 
 .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 10px;
 }
 
 .form-group.full-width {
