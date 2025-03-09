@@ -21,7 +21,7 @@ router.get('/signup', (req, res, next) => {
 });
 
 // Serve Login Dashboard Page...
-router.get('/logindashboard', (req, res, next) =>{
+router.get('/logindashboard', (req, res, next) => {
     try {
         res.render('logindashboard');
     } catch (error) {
@@ -29,9 +29,24 @@ router.get('/logindashboard', (req, res, next) =>{
     }
 });
 
-// Testing frontend routes...
-router.get('/temp1')
-router.get('/temp2')
-router.get('/temp3')
+// Serve Doctor Login Page...
+router.get('/docLogin', (req, res) => {
+    res.render('docLogin');
+});
+
+// Serve Doctor Signup page...
+router.get('/docSignup', (req, res) => {
+    res.render('docSignup')
+});
+
+// Serve User Login page...
+router.get('/userLogin', (req, res) => {
+    res.render('userLogin');
+});
+
+// Serve User Signup page...
+router.get('/userSignup', (req, res) => {
+    res.render('userSignup')
+})
 
 export default router;

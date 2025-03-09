@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>User LogIn - MediBook</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="/stylesheets/userLogin.css">
 </head>
@@ -14,7 +14,7 @@
         <div class="box">
             <span class="icons"><i class="ri-user-fill"></i></span>
             <h2>User Login</h2>
-            <form action="/login" method="POST">
+            <form action="/api/v1/login" method="POST">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required placeholder="Enter your email">
@@ -24,7 +24,7 @@
                     <input type="password" id="password" name="password" required placeholder="Create a password">
                 </div>
                 <button type="submit" class="signup-btn">Sign Up</button>
-                <p class="login-link">Don't have an account? <a href="/temp1">Signup</a></p>
+                <p class="login-link">Don't have an account? <a href="/userSignup">Signup</a></p>
             </form>
         </div>
     </div>
