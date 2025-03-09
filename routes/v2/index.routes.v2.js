@@ -20,8 +20,16 @@ router.get('/signup', (req, res, next) => {
     }
 });
 
+// Serve Login Dashboard Page...
+router.get('/logindashboard', (req, res, next) =>{
+    try {
+        res.render('logindashboard');
+    } catch (error) {
+        res.render('errorPage');
+    }
+});
+
 // Testing frontend routes...
-router.get('/temp1')
 router.get('/temp2')
 router.get('/temp3')
 

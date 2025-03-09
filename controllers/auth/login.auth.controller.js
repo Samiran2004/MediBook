@@ -28,7 +28,7 @@ const logincontroller = async (req, res, next) => {
                 const token = await JWT.sign(playLoad, configs.JWT_SECRET, { expiresIn: '1h' });
                 return res.status(StatusCodes.ACCEPTED).json({
                     status: 'OK',
-                    message: "Successfully Loggedin!",
+                    message: "Successfully Logedin!",
                     token: token
                 });
             }
@@ -41,7 +41,29 @@ const logincontroller = async (req, res, next) => {
         // Check if Doctor or not...
         const Doctor = await Models.DoctorModel.findOne({ email: email });
         if (Doctor && Doctor !== null) {
-
+            // Validate Password...
+            const isValidPassword = await bcrypt.compare(password, Doctor.password);
+            if (isValidPassword) {
+                const playLoad = {
+                    name: Doctor.name,
+                    email: Doctor.email,
+                    RegId: Doctor.registrationId,
+                    isVerified: Doctor.isVerified,
+                    specialization: Doctor.specialization,
+                    profileimage: Doctor.profilepic
+                }
+                // Create token...
+                const token = await JWT.sign(playLoad, configs.JWT_SECRET);
+                return res.status(StatusCodes.ACCEPTED).json({
+                    status: 'OK',
+                    message: 'Successfully Logedin!',
+                    token: token
+                });
+            }
+            return res.status(StatusCodes.UNAUTHORIZED).json({
+                status: 'Failed',
+                message: "Invalid Email or Password!"
+            });
         }
 
         return res.status(StatusCodes.CONFLICT).json({
