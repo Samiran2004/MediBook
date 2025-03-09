@@ -28,8 +28,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fc;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   min-height: 100vh; /* changed height to min-height */
   margin: 0;
 }
@@ -44,6 +43,7 @@ body {
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: auto;
 }
 
 .box {
