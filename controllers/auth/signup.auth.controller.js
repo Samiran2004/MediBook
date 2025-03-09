@@ -70,13 +70,41 @@ const signupController = async (req, res, next) => {
                 message: "Successfully Signed Up!",
                 data: newDoctor
             });
-        }else if(role === 'user') {
+        } else if (role === 'user') {
+            let { name, email, phonenumber, password } = req.body;
+            if (!name || !email || !phonenumber || !password) {
+                return res.status(StatusCodes.BAD_REQUEST).json({
+                    status: "Failed",
+                    message: "Please enter all required fields!"
+                });
+            }
+
+            // Check user is exist or not through email...
+            const User = await Models.UserModel.findOne({ email: email });
+            if (User && User !== null) {
+                return res.status(StatusCodes.CONFLICT).json({
+                    status: "Failed",
+                    message: "User is already exist!"
+                });
+            }
+
+            // Hash the password...
+            const hashed_password = await bcrypt.hash(password, Number(configs.SALT));
+            let newUser = new Models.UserModel({
+                name: name,
+                email: email,
+                phonenumber: phonenumber,
+                password: hashed_password
+            });
+
+            await newUser.save();
             return res.status(StatusCodes.CREATED).json({
                 status: "OK",
-                message: "User created..."
-            })
+                message: "Successfully Signed Up!",
+                data: newUser
+            });
         }
-        
+
         // If role is not doctor
         return res.status(StatusCodes.BAD_REQUEST).json({
             status: 'Failed',
