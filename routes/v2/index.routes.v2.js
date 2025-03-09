@@ -21,7 +21,9 @@ router.get('/signup', (req, res, next) => {
 });
 
 // Testing frontend routes...
-router.get('/temp1')
+router.get('/temp1', (req,res, next)=>{
+    res.render("userSignup")
+})
 router.get('/temp2')
 router.get('/temp3')
 
