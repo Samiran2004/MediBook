@@ -30,6 +30,7 @@ router.get('/logindashboard', (req, res, next) =>{
 });
 
 // Testing frontend routes...
+router.get('/temp1')
 router.get('/temp2')
 router.get('/temp3')
 

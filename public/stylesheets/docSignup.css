@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --primary-color: #f0f0f0;
+  --secondary-color: #407bff;
+  --tertiary-color: #fff;
+  --text-color: #828282;
+  --hover-color: #3a66ff;
+  --button-padding: 0.5rem 2rem;
+  --button-radius: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: var(--primary-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.box {
+    background: var(--tertiary-color);
+    padding: 20px 40px;
+    border-radius: var(--button-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.form-row {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--text-color);
+    border-radius: var(--button-radius);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background-color: var(--tertiary-color);
+}
+
+input[type="file"] {
+    padding: 8px;
+    border: 1px dashed var(--text-color);
+    background: var(--primary-color);
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+input[type="file"]:hover {
+    border-color: var(--secondary-color);
+}
+
+select[multiple] {
+    height: 140px;
+    padding: 8px;
+}
+
+select[multiple] option {
+    padding: 6px 8px;
+    margin: 2px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+select[multiple] option:hover {
+    background-color: rgba(64, 123, 255, 0.1);
+}
+
+select[multiple] option:checked {
+    background: var(--secondary-color) linear-gradient(0deg, var(--secondary-color) 0%, var(--secondary-color) 100%);
+    color: var(--tertiary-color);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 2px rgba(64, 123, 255, 0.1);
+}
+
+small {
+    display: block;
+    color: var(--text-color);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.signup-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--secondary-color);
+    color: var(--tertiary-color);
+    border: none;
+    border-radius: var(--button-radius);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.signup-btn:hover {
+    background: var(--hover-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(64, 123, 255, 0.2);
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.login-link a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 4px;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.icons {
+    text-align: center;
+    font-size: 3rem;
+    color: var(--secondary-color);
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 700px;
+    }
+    
+    .box {
+        padding: 25px 30px;
+    }
+    
+    .form-row {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+    
+    .box {
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row .form-group {
+        margin-bottom: 20px;
+    }
+    
+    h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    select[multiple] {
+        height: 160px;
+    }
+}
