@@ -30,12 +30,12 @@ router.get('/logindashboard', (req, res, next) => {
 });
 
 // Serve Doctor Login Page...
-router.get('/docLogin', (req, res) => {
+router.get('/doctorLogin', (req, res) => {
     res.render('docLogin');
 });
 
 // Serve Doctor Signup page...
-router.get('/docSignup', (req, res) => {
+router.get('/doctorSignup', (req, res) => {
     res.render('docSignup')
 });
 
