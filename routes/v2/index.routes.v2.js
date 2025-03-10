@@ -1,4 +1,6 @@
 import express from 'express';
+import { StatusCodes } from 'http-status-codes';
+import userauthmiddleware from '../../middlewares/userauth.middleware.js';
 
 const router = express.Router();
 
@@ -47,6 +49,14 @@ router.get('/userLogin', (req, res) => {
 // Serve User Signup page...
 router.get('/userSignup', (req, res) => {
     res.render('userSignup')
-})
+});
+
+// Serve a demo dashboard...
+router.get('/tempDash', userauthmiddleware('doctortoken'), (req, res) => {
+    res.status(StatusCodes.OK).json({
+        status: 'OK',
+        message: "Demo Dashboard"
+    });
+});
 
 export default router;

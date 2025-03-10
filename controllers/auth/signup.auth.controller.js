@@ -72,11 +72,7 @@ const signupController = async (req, res, next) => {
             // Save to DB
             await newDoctor.save();
 
-            return res.status(StatusCodes.CREATED).json({
-                status: 'OK',
-                message: "Successfully Signed Up!",
-                data: newDoctor
-            });
+            return res.redirect('/doctorLogin')
         } else if (role === 'user') {
             let { name, email, phonenumber, password } = req.body;
             if (!name || !email || !phonenumber || !password) {
@@ -105,11 +101,13 @@ const signupController = async (req, res, next) => {
             });
 
             await newUser.save();
-            return res.status(StatusCodes.CREATED).json({
-                status: "OK",
-                message: "Successfully Signed Up!",
-                data: newUser
-            });
+            // return res.status(StatusCodes.CREATED).json({
+            //     status: "OK",
+            //     message: "Successfully Signed Up!",
+            //     data: newUser
+            // });
+
+            return res.redirect('/userLogin');
         }
 
         // If role is not doctor
