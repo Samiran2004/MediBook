@@ -41,6 +41,10 @@ router.get('/doctorSignup', (req, res) => {
     res.render('docSignup')
 });
 
+router.get('/doctorDash', (req, res) => {
+    res.render('docDashboard')
+});
+
 // Serve User Login page...
 router.get('/userLogin', (req, res) => {
     res.render('userLogin');
