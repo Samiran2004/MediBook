@@ -1,6 +1,6 @@
 import express from 'express';
 import { StatusCodes } from 'http-status-codes';
-import userauthmiddleware from '../../middlewares/userauth.middleware.js';
+import Middlewares from '../../middlewares/index.middleware.js';
 
 const router = express.Router();
 
@@ -51,11 +51,19 @@ router.get('/userSignup', (req, res) => {
     res.render('userSignup')
 });
 
-// Serve a demo dashboard...
-router.get('/tempDash', userauthmiddleware('doctortoken'), (req, res) => {
+// Serve a demo doctor dashboard...
+router.get('/tempDash', Middlewares.DoctorAuth('doctortoken'), (req, res) => {
     res.status(StatusCodes.OK).json({
         status: 'OK',
         message: "Demo Dashboard"
+    });
+});
+
+// Serve a demo user Dashboard...
+router.get('/tempDash2', Middlewares.UserAuth('usertoken'), (req, res) => {
+    res.status(StatusCodes.ACCEPTED).json({
+        status: 'OK',
+        message: "Demo User Dashboard!"
     });
 });
 
