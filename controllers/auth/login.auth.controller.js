@@ -23,7 +23,8 @@ const logincontroller = async (req, res, next) => {
             if (isPasswordMatch) {
                 const playLoad = {
                     name: User.name,
-                    email: User.email
+                    email: User.email,
+                    role: "user"
                 }
                 const token = await JWT.sign(playLoad, configs.JWT_SECRET, { expiresIn: '1h' });
                 return res.status(StatusCodes.ACCEPTED).json({
@@ -51,15 +52,18 @@ const logincontroller = async (req, res, next) => {
                     isVerified: Doctor.isVerified,
                     specialization: Doctor.specialization,
                     profileimage: Doctor.profilepic,
-                    address: Doctor.address
+                    address: Doctor.address,
+                    role: "doctor"
                 }
                 // Create token...
                 const token = await JWT.sign(playLoad, configs.JWT_SECRET);
-                return res.status(StatusCodes.ACCEPTED).json({
-                    status: 'OK',
-                    message: 'Successfully Logedin!',
-                    token: token
-                });
+                // return res.status(StatusCodes.ACCEPTED).json({
+                //     status: 'OK',
+                //     message: 'Successfully Logedin!',
+                //     token: token
+                // });
+                res.cookie('doctortoken', token).redirect('/tempDash');
+                return;
             }
             return res.status(StatusCodes.UNAUTHORIZED).json({
                 status: 'Failed',
