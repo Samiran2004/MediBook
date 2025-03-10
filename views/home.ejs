@@ -17,18 +17,18 @@
     <%- include('partials/navbar') %>
     <!-- hero section  -->
     <section id="hero">
+
       <div id="hero-left">
-        <h1>Welcome to <span>MEDICON</span></h1>
-        <p>
-          Connect with top medical professionals at the click of a button.
-          Schedule appointments, manage your visits, and stay on top of your
-          healthcare needs with ease.
+        <h1 class="welcome-title">Welcome to <span class="typewriter-title"><span>MEDICON</span></span></h1>
+        <p class="welcome-subtitle">
+          <span class="typewriter-subtitle">Connect with top medical professionals at the click of a button. 
+                 Schedule appointments, manage your visits, and stay on top of your healthcare needs with ease.</span>
         </p>
-        <a href="/logindashboard"><button>Get Started</button></a>
+        <a href="/logindashboard" class="get-started-button"><button>Get Started</button></a>
       </div>
 
       <div id="hero-right">
-        <img src="/assets/hero-sec.svg" alt="hero" />
+        <img class="doctor-illustration" src="/assets/hero-sec.svg" alt="hero" />
       </div>
     </section>
 
@@ -96,6 +96,9 @@
     <!-- Footer Section -->
         <%- include('partials/footer') %>
   </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+    integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/javascripts/index.js"></script>
   <script src="/javascripts/navbar.js"></script>
 </body>

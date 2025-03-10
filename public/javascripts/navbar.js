@@ -69,4 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 `;
   document.head.appendChild(style);
+
+  gsap.from("#hamburger-menu", { opacity: 0, duration: 1 });
+
+  gsap.from("nav", { y: -100, opacity: 0, duration: 0.8 });
 });
