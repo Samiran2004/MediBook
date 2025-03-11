@@ -14,7 +14,6 @@ function doctorauthmiddleware(token) {
         } else {
             try {
                 const userPayload = JWT.verify(tokenValue, configs.JWT_SECRET);
-                console.log(userPayload);
 
                 // For Doctor...
                 if(userPayload.role === 'doctor') {

@@ -41,8 +41,9 @@ router.get('/doctorSignup', (req, res) => {
     res.render('docSignup')
 });
 
-router.get('/doctorDash', (req, res) => {
-    res.render('docDashboard')
+// Serve a demo doctor dashboard...
+router.get('/doctorDash', Middlewares.DoctorAuth('doctortoken'), (req, res) => {
+    res.render('docDashboard');
 });
 
 // Serve User Login page...
@@ -53,14 +54,6 @@ router.get('/userLogin', (req, res) => {
 // Serve User Signup page...
 router.get('/userSignup', (req, res) => {
     res.render('userSignup')
-});
-
-// Serve a demo doctor dashboard...
-router.get('/tempDash', Middlewares.DoctorAuth('doctortoken'), (req, res) => {
-    res.status(StatusCodes.OK).json({
-        status: 'OK',
-        message: "Demo Dashboard"
-    });
 });
 
 // Serve a demo user Dashboard...
