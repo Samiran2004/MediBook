@@ -1,6 +1,7 @@
 import express from 'express';
 import { StatusCodes } from 'http-status-codes';
 import Middlewares from '../../middlewares/index.middleware.js';
+import controllers from "../../controllers/index.controllers.js";
 
 const router = express.Router();
 
@@ -42,9 +43,7 @@ router.get('/doctorSignup', (req, res) => {
 });
 
 // Serve a demo doctor dashboard...
-router.get('/doctorDash', Middlewares.DoctorAuth('doctortoken'), (req, res) => {
-    res.render('docDashboard');
-});
+router.get('/doctorDash', Middlewares.DoctorAuth('doctortoken'), controllers.DoctorDashboard);
 
 // Serve User Login page...
 router.get('/userLogin', (req, res) => {
