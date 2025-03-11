@@ -17,12 +17,12 @@
             <div class="left-section fade-in">
                 <div class="left-primary">
                     <div class="profile-header">
-                        <img src="2.jpg" alt="Doctor Image" />
+                        <img src="<%= doctor.profileimage %>" alt="Doctor Image" />
                         <div class="profile-info">
-                            <h2>Dr. Sarah Johnson</h2>
-                            <span class="specialty">Cardiologist</span>
+                            <h2><%= doctor.name %></h2>
+                            <span class="specialty"><%= doctor.specialization %></span>
                             <span class="divider">|</span>
-                            <span class="sub-specialty">Heart Specialist</span>
+                            <span class="sub-specialty"><%= doctor.specialization %> Specialist</span>
                         </div>
                     </div>
 
@@ -52,11 +52,11 @@
                         <div class="details-grid">
                             <div class="detail-item">
                                 <span class="detail-label">Specialization</span>
-                                <span class="detail-value">Interventional Cardiology</span>
+                                <span class="detail-value"><%= doctor.specialization %></span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">License No.</span>
-                                <span class="detail-value">NY12345</span>
+                                <span class="detail-value"><%= doctor.RegId %></span>
                                 </div>
                                 </div>
                                 
@@ -84,7 +84,7 @@
                             <div class="details-grid">
                                 <div class="detail-item">
                                     <span class="detail-label">Clinic Address</span>
-                                    <span class="detail-value">123 Main Street, New York, NY</span>
+                                    <span class="detail-value"><%= doctor.address %></span>
                                     </div>
                                     </div>
                                     

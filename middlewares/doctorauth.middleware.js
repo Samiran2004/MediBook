@@ -17,6 +17,8 @@ function doctorauthmiddleware(token) {
 
                 // For Doctor...
                 if(userPayload.role === 'doctor') {
+                    req.doctor = userPayload;
+                    res.locals.doctor = userPayload;
                     return next();
                 }
                 return next();
