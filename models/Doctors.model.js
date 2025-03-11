@@ -72,11 +72,12 @@ const DoctorSchema = mongoose.Schema({
         type: String
     },
     consultationFee: {
-        type: String
+        type: Number,
+        default: 0
     },
     facts: {
         type: String,
-        default: "Remember: Each patient is a story waiting to be heard—listen with compassion, heal with expertise."
+        default: "Each patient is a story waiting to be heard—listen with compassion, heal with expertise."
     }
 });
 
