@@ -63,6 +63,20 @@ const DoctorSchema = mongoose.Schema({
     isVerified: {
         type: Boolean,
         default: false
+    },
+    languages: {
+        type: [String],
+        default: ["English"]
+    },
+    education: {
+        type: String
+    },
+    consultationFee: {
+        type: String
+    },
+    facts: {
+        type: String,
+        default: "Remember: Each patient is a story waiting to be heard—listen with compassion, heal with expertise."
     }
 });
 
