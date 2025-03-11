@@ -62,7 +62,7 @@ const logincontroller = async (req, res, next) => {
                 //     message: 'Successfully Logedin!',
                 //     token: token
                 // });
-                res.cookie('doctortoken', token).redirect('/tempDash');
+                res.cookie('doctortoken', token).redirect('/doctorDash');
                 return;
             }
             return res.status(StatusCodes.UNAUTHORIZED).json({
