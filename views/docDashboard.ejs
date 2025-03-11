@@ -19,10 +19,16 @@
                     <div class="profile-header">
                         <img src="<%= doctor.profileimage %>" alt="Doctor Image" />
                         <div class="profile-info">
-                            <h2><%= doctor.name %></h2>
-                            <span class="specialty"><%= doctor.specialization %></span>
+                            <h2>
+                                <%= doctor.name %>
+                            </h2>
+                            <span class="specialty">
+                                <%= doctor.specialization %>
+                            </span>
                             <span class="divider">|</span>
-                            <span class="sub-specialty"><%= doctor.specialization %> Specialist</span>
+                            <span class="sub-specialty">
+                                <%= doctor.specialization %> Specialist
+                            </span>
                         </div>
                     </div>
 
@@ -52,20 +58,24 @@
                         <div class="details-grid">
                             <div class="detail-item">
                                 <span class="detail-label">Specialization</span>
-                                <span class="detail-value"><%= doctor.specialization %></span>
+                                <span class="detail-value">
+                                    <%= doctor.specialization %>
+                                </span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">License No.</span>
-                                <span class="detail-value"><%= doctor.RegId %></span>
-                                </div>
-                                </div>
-                                
-                                <div class="section-header">
-                                    <h3>Additional Details</h3>
-                                    <button class="edit-details-btn">Edit</button>
-                                </div>
-                                <div class="details-grid">
-                                    <div class="detail-item">
+                                <span class="detail-value">
+                                    <%= doctor.RegId %>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="section-header">
+                            <h3>Additional Details</h3>
+                            <button class="edit-details-btn">Edit</button>
+                        </div>
+                        <div class="details-grid">
+                            <div class="detail-item">
                                 <span class="detail-label">Languages</span>
                                 <span class="detail-value">English, Hindi</span>
                             </div>
@@ -84,19 +94,22 @@
                             <div class="details-grid">
                                 <div class="detail-item">
                                     <span class="detail-label">Clinic Address</span>
-                                    <span class="detail-value"><%= doctor.address %></span>
-                                    </div>
-                                    </div>
-                                    
-                                    <div class="section-header">
-                                        <h3>Facts to remember</h3>
-                                        <button class="edit-details-btn">Edit</button>
-                                    </div>
-                                    <div class="details-grid">
-                                        <div class="detail-item">
-                                            <span class="detail-fact">“Remember: Each patient is a story waiting to be heard—listen with compassion, heal
-                                                with expertise.”</span>
-                                        </div>
+                                    <span class="detail-value">
+                                        <%= doctor.address %>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="section-header">
+                                <h3>Facts to remember</h3>
+                                <button class="edit-details-btn">Edit</button>
+                            </div>
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <span class="detail-fact">“Remember: Each patient is a story waiting to be
+                                        heard—listen with compassion, heal
+                                        with expertise.”</span>
+                                </div>
                             </div>
                         </div>
                     </div>
