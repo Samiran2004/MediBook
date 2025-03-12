@@ -50,7 +50,8 @@ router.post('/updateDetails', Middlewares.DoctorAuth('doctortoken'), controllers
 
 /**
  * Get all Doctors
- * PathL /api/v1/doctors
+ * Path: /api/v1/doctors
+ * Body: isVerified: true or false
  */
 // router.get('/doctors', Middlewares.UserAuth('usertoken'), controllers.GetAllDoctors);
 router.get('/doctors', controllers.GetAllDoctors); // For testing
