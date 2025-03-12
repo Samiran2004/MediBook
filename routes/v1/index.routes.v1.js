@@ -48,4 +48,11 @@ router.get('/logout', (req, res) => {
  */
 router.post('/updateDetails', Middlewares.DoctorAuth('doctortoken'), controllers.UpdateDoctorDetails);
 
+/**
+ * Get all Doctors
+ * PathL /api/v1/doctors
+ */
+// router.get('/doctors', Middlewares.UserAuth('usertoken'), controllers.GetAllDoctors);
+router.get('/doctors', controllers.GetAllDoctors); // For testing
+
 export default router;
