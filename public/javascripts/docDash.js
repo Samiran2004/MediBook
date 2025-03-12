@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     try {
-      const response = await fetch("/updateDetails", {
+      const response = await fetch("/api/v1/updateDetails", {
         method: "POST",
         credentials: "include",
         headers: {

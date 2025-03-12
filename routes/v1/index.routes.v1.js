@@ -42,6 +42,7 @@ router.get("/logout", (req, res) => {
   res.clearCookie().redirect("/");
 });
 
+<<<<<<< HEAD
 router.post(
   "/updateSchedule",
   Middlewares.DoctorAuth("doctortoken"),
@@ -54,5 +55,12 @@ router.get(
   controllers.GetDoctorSchedule
 );
 
+=======
+/**
+ * Update Doctor's Dets
+ * Path: /api/v1/updateDetails
+ */
+router.post('/updateDetails', Middlewares.DoctorAuth('doctortoken'), controllers.UpdateDoctorDetails);
+>>>>>>> ccf01f0bd71a2f00a6fa08f1bbaca47b7a3b5862
 
 export default router;
