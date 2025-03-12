@@ -24,8 +24,6 @@ const updateDoctorSchedule = async function (req, res, next) {
       scheduleData,
       {
         new: true,
-        upsert: true, // create if does not exist
-        runValidators: true,
       }
     );
 
