@@ -46,15 +46,16 @@ const logincontroller = async (req, res, next) => {
             const isValidPassword = await bcrypt.compare(password, Doctor.password);
             if (isValidPassword) {
                 const playLoad = {
-                    name: Doctor.name,
-                    email: Doctor.email,
-                    RegId: Doctor.registrationId,
-                    isVerified: Doctor.isVerified,
-                    specialization: Doctor.specialization,
-                    profileimage: Doctor.profilepic,
-                    address: Doctor.address,
-                    role: "doctor"
-                }
+                  _id: Doctor._id,
+                  name: Doctor.name,
+                  email: Doctor.email,
+                  RegId: Doctor.registrationId,
+                  isVerified: Doctor.isVerified,
+                  specialization: Doctor.specialization,
+                  profileimage: Doctor.profilepic,
+                  address: Doctor.address,
+                  role: "doctor",
+                };
                 // Create token...
                 const token = await JWT.sign(playLoad, configs.JWT_SECRET);
                 // return res.status(StatusCodes.ACCEPTED).json({

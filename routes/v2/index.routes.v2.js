@@ -63,4 +63,8 @@ router.get('/tempDash2', Middlewares.UserAuth('usertoken'), (req, res) => {
     });
 });
 
+// demo route for updating doctor details...
+
+router.post('/updateDetails', Middlewares.DoctorAuth('doctortoken'), controllers.UpdateDoctorDetails);
+
 export default router;

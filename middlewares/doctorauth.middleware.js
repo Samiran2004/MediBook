@@ -5,29 +5,48 @@ import configs from '../configs/index.configs.js';
 
 function doctorauthmiddleware(token) {
     return async (req, res, next) => {
-        const tokenValue = req.cookies[token];
-        if (!tokenValue) {
-            res.status(StatusCodes.UNAUTHORIZED).json({
-                status: 'Failed',
-                message: "Token not found!"
-            });
-        } else {
-            try {
-                const userPayload = JWT.verify(tokenValue, configs.JWT_SECRET);
+        try {
+          const tokenValue = req.cookies[token];
 
-                // For Doctor...
-                if(userPayload.role === 'doctor') {
-                    req.doctor = userPayload;
-                    res.locals.doctor = userPayload;
-                    return next();
-                }
-                return next();
-            } catch (error) {
-                res.status(StatusCodes.UNAUTHORIZED).json({
-                    status: 'Failed',
-                    message: "Token verification error..."
-                });
-            }
+          if (!tokenValue) {
+            return res.status(StatusCodes.UNAUTHORIZED).json({
+              status: "Failed",
+              message: "Token not found!",
+            });
+          }
+
+          const userPayload = JWT.verify(tokenValue, configs.JWT_SECRET);
+
+          if (!userPayload || !userPayload._id) {
+            return res.status(StatusCodes.UNAUTHORIZED).json({
+              status: "Failed",
+              message: "Invalid token payload",
+            });
+          }
+
+          // For Doctor...
+          if (userPayload.role === "doctor") {
+            // Set both req.user and req.doctor for compatibility
+            req.user = {
+              id: userPayload._id,
+              role: userPayload.role,
+            };
+            req.doctor = userPayload;
+            res.locals.doctor = userPayload;
+            return next();
+          }
+
+          return res.status(StatusCodes.UNAUTHORIZED).json({
+            status: "Failed",
+            message: "Access denied. Only doctors can access this route.",
+          });
+        } catch (error) {
+          console.error("Auth Middleware Error:", error);
+          return res.status(StatusCodes.UNAUTHORIZED).json({
+            status: "Failed",
+            message: "Authentication failed",
+            error: error.message,
+          });
         }
     }
 }

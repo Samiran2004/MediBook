@@ -13,44 +13,47 @@
 <body>
     <%- include('partials/navbar') %>
 
-        <div class="container">
-            <div class="left-section fade-in">
-                <div class="left-primary">
-                    <div class="profile-header">
-                        <img src="<%= doctor.profileimage %>" alt="Doctor Image" />
-                        <div class="profile-info">
-                            <h2>
-                                <%= doctor.name %>
-                            </h2>
-                            <span class="specialty">
-                                <%= doctor.specialization %>
-                            </span>
-                            <span class="divider">|</span>
-                            <span class="sub-specialty">
-                                <%= doctor.specialization %> Specialist
-                            </span>
-                        </div>
+    <div class="container">
+        <div class="left-section fade-in">
+            <div class="left-primary">
+                <div class="profile-header">
+                    <img src="<%= doctor.profileimage %>" alt="Doctor Image" />
+                    <div class="profile-info">
+                        <h2>
+                            <%= doctor.name %>
+                        </h2>
+                        <span class="specialty">
+                            <%= doctor.specialization %>
+                        </span>
+                        <% if (doctor.specialization.length> 1) { %>
+                        <span class="divider">|</span>
+                        <span class="sub-specialty">
+                            <%= doctor.specialization %> Specialist
+                        </span>
+                        <% } %>
+                    </div>
                     </div>
 
-                    <div class="quick-stats">
-                        <div class="stat-card">
-                            <div class="stat-icon">👥</div>
-                            <div class="stat-details">
-                                <span class="stat-number">1000+</span>
-                                <span class="stat-label">Total Patients</span>
-                            </div>
+                <div class="quick-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-details">
+                            <span class="stat-number">1000+</span>
+                            <span class="stat-label">Total Patients</span>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">⭐</div>
-                            <div class="stat-details">
-                                <span class="stat-number">5+</span>
-                                <span class="stat-label">Years Experience</span>
-                            </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-details">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Years Experience</span>
                         </div>
                     </div>
                 </div>
+                </div>
 
-                <div class="left-secondary">
+            <div class="left-secondary">
+                <form id="details-form" action="/updateDoctorDetails" method="POST">
                     <div class="additional-details">
                         <div class="section-header">
                             <h3>Details</h3>
@@ -58,13 +61,13 @@
                         <div class="details-grid">
                             <div class="detail-item">
                                 <span class="detail-label">Specialization</span>
-                                <span class="detail-value">
+                                <span class="detail-value non-editable" data-field="specialization">
                                     <%= doctor.specialization %>
                                 </span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">License No.</span>
-                                <span class="detail-value">
+                                <span class="detail-value non-editable" data-field="registrationId">
                                     <%= doctor.RegId %>
                                 </span>
                             </div>
@@ -72,30 +75,33 @@
 
                         <div class="section-header">
                             <h3>Additional Details</h3>
-                            <button class="edit-details-btn">Edit</button>
+                            <button type="button" class="edit-details-btn">Edit</button>
                         </div>
                         <div class="details-grid">
                             <div class="detail-item">
                                 <span class="detail-label">Languages</span>
-                                <!-- <span class="detail-value">English, Hindi</span> -->
-                                <span class="detail-value"><%=languages%></span>
+                                <span class="detail-value" data-field="languages">
+                                    <%= languages %>
+                                </span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Education</span>
-                                <span class="detail-value"><%=education%></span>
+                                <span class="detail-value" data-field="education">
+                                    <%= education %>
+                                </span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Consultation Fee</span>
-                                <span class="detail-value">$<%=consultationFee%></span>
+                                <span class="detail-value" data-field="consultationFee">$<%= consultationFee %></span>
                             </div>
                             <div class="section-header">
                                 <h3>Address</h3>
-                                <button class="edit-details-btn">Edit</button>
+                                <button type="button" class="edit-details-btn">Edit</button>
                             </div>
                             <div class="details-grid">
                                 <div class="detail-item">
                                     <span class="detail-label">Clinic Address</span>
-                                    <span class="detail-value">
+                                    <span class="detail-value" data-field="address">
                                         <%= doctor.address %>
                                     </span>
                                 </div>
@@ -103,131 +109,133 @@
 
                             <div class="section-header">
                                 <h3>Facts to remember</h3>
-                                <button class="edit-details-btn">Edit</button>
+                                <button type="button" class="edit-details-btn">Edit</button>
                             </div>
                             <div class="details-grid">
                                 <div class="detail-item">
-                                    <span class="detail-fact">“Remember: <%=facts%>”</span>
+                                    <span class="detail-fact" data-field="facts">“Remember: <%= facts %>”</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <button type="submit" class="save-details-btn hidden">Save</button>
+                    </form>
+            </div>
             </div>
 
-            <div class="right-section">
-                <div class="availability-section fade-in">
-                    <div class="section-header">
-                        <h3>Manage Weekly Schedule</h3>
-                        <button class="edit-schedule-btn">Edit Schedule</button>
-                    </div>
-
-                    <div class="schedule-grid">
-                        <div class="schedule-item">
-                            <div class="day-info">
-                                <span class="day">Monday</span>
-                                <label class="switch">
-                                    <input type="checkbox" checked />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="time-slots">
-                                <div class="time-slot">
-                                    <input type="time" value="09:00" />
-                                    <span>to</span>
-                                    <input type="time" value="17:00" />
-                                </div>
-                                <button class="add-slot-btn">+ Add Slot</button>
-                            </div>
-                        </div>
-
-                        <div class="schedule-item">
-                            <div class="day-info">
-                                <span class="day">Tuesday</span>
-                                <label class="switch">
-                                    <input type="checkbox" checked />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="time-slots">
-                                <div class="time-slot">
-                                    <input type="time" value="09:00" />
-                                    <span>to</span>
-                                    <input type="time" value="17:00" />
-                                </div>
-                                <button class="add-slot-btn">+ Add Slot</button>
-                            </div>
-                        </div>
-
-                        <div class="schedule-item">
-                            <div class="day-info">
-                                <span class="day">Wednesday</span>
-                                <label class="switch">
-                                    <input type="checkbox" checked />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="time-slots">
-                                <div class="time-slot">
-                                    <input type="time" value="10:00" />
-                                    <span>to</span>
-                                    <input type="time" value="18:00" />
-                                </div>
-                                <button class="add-slot-btn">+ Add Slot</button>
-                            </div>
-                        </div>
-
-                        <div class="schedule-item">
-                            <div class="day-info">
-                                <span class="day">Thursday</span>
-                                <label class="switch">
-                                    <input type="checkbox" checked />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="time-slots">
-                                <div class="time-slot">
-                                    <input type="time" value="09:00" />
-                                    <span>to</span>
-                                    <input type="time" value="17:00" />
-                                </div>
-                                <button class="add-slot-btn">+ Add Slot</button>
-                            </div>
-                        </div>
-
-                        <div class="schedule-item">
-                            <div class="day-info">
-                                <span class="day">Friday</span>
-                                <label class="switch">
-                                    <input type="checkbox" checked />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div class="time-slots">
-                                <div class="time-slot">
-                                    <input type="time" value="09:00" />
-                                    <span>to</span>
-                                    <input type="time" value="16:00" />
-                                </div>
-                                <button class="add-slot-btn">+ Add Slot</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="schedule-actions">
-                        <button class="save-schedule">Save Changes</button>
-                        <button class="reset-schedule">Reset</button>
-                    </div>
+        <div class="right-section">
+            <div class="availability-section fade-in">
+                <div class="section-header">
+                    <h3>Manage Weekly Schedule</h3>
+                    <button class="edit-schedule-btn">Edit Schedule</button>
                 </div>
-            </div>
-        </div>
 
-        <%- include('partials/footer') %>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-                integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
-                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-            <script src="/javascripts/navbar.js"></script>
-            <script src="/javascripts/docDash.js"></script>
+                <div class="schedule-grid">
+                    <div class="schedule-item">
+                        <div class="day-info">
+                            <span class="day">Monday</span>
+                            <label class="switch">
+                                <input type="checkbox" checked />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="time-slots">
+                            <div class="time-slot">
+                                <input type="time" value="09:00" />
+                                <span>to</span>
+                                <input type="time" value="17:00" />
+                            </div>
+                            <button class="add-slot-btn">+ Add Slot</button>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="day-info">
+                            <span class="day">Tuesday</span>
+                            <label class="switch">
+                                <input type="checkbox" checked />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="time-slots">
+                            <div class="time-slot">
+                                <input type="time" value="09:00" />
+                                <span>to</span>
+                                <input type="time" value="17:00" />
+                            </div>
+                            <button class="add-slot-btn">+ Add Slot</button>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="day-info">
+                            <span class="day">Wednesday</span>
+                            <label class="switch">
+                                <input type="checkbox" checked />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="time-slots">
+                            <div class="time-slot">
+                                <input type="time" value="10:00" />
+                                <span>to</span>
+                                <input type="time" value="18:00" />
+                            </div>
+                            <button class="add-slot-btn">+ Add Slot</button>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="day-info">
+                            <span class="day">Thursday</span>
+                            <label class="switch">
+                                <input type="checkbox" checked />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="time-slots">
+                            <div class="time-slot">
+                                <input type="time" value="09:00" />
+                                <span>to</span>
+                                <input type="time" value="17:00" />
+                            </div>
+                            <button class="add-slot-btn">+ Add Slot</button>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="day-info">
+                            <span class="day">Friday</span>
+                            <label class="switch">
+                                <input type="checkbox" checked />
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="time-slots">
+                            <div class="time-slot">
+                                <input type="time" value="09:00" />
+                                <span>to</span>
+                                <input type="time" value="16:00" />
+                            </div>
+                            <button class="add-slot-btn">+ Add Slot</button>
+                        </div>
+                    </div>
+                    </div>
+
+                <div class="schedule-actions">
+                    <button class="save-schedule">Save Changes</button>
+                    <button class="reset-schedule">Reset</button>
+                </div>
+                </div>
+                </div>
+                </div>
+
+    <%- include('partials/footer') %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+            integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="/javascripts/navbar.js"></script>
+        <script src="/javascripts/docDash.js"></script>
 </body>
 
 </html>
