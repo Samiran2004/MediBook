@@ -16,7 +16,17 @@
             <li>
                 <a href="/links"><span><i class="ri-links-line"></i></span>Quick Links</a>
             </li>
-            <li><a href="/logindashboard"><button>Login</button></a></li>
+
+            <% if (locals.doctor || locals.user) { %>
+                <li>
+                    <form action="/api/v1/logout" method="get">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            <% } else { %>
+                <li><a href="/logindashboard"><button>Login</button></a></li>
+            <% } %>
+            
         </ul>
     </div>
 </nav>
