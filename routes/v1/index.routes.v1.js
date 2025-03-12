@@ -33,4 +33,12 @@ router.post('/signup', upload.single('profileimage'), controllers.SignUp);
  */
 router.post('/login', controllers.Login);
 
+/**
+ * Logout
+ * Path: /api/v1/logout
+ */
+router.get('/logout', (req, res) => {
+    res.clearCookie().redirect('/');
+});
+
 export default router;
