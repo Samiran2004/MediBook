@@ -1,0 +1,671 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #3b82f6;
+  --accent-color: #60a5fa;
+  --success-color: #22c55e;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --border-color: #e2e8f0;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, 'sans-serif';
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Dashboard specific button styles - these override navbar styles */
+.dashboard-container .btn,
+.pending-section .btn,
+.doctors-section .btn,
+.appointments-section .btn,
+.medical-records .btn,
+.action-buttons .btn {
+  box-shadow: none;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  height: auto;
+  min-width: auto;
+  line-height: normal;
+}
+
+.dashboard-container .btn-primary,
+.pending-section .btn-primary,
+.doctors-section .btn-primary,
+.appointments-section .btn-primary,
+.medical-records .btn-primary,
+.action-buttons .btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.dashboard-container .btn-primary:hover,
+.pending-section .btn-primary:hover,
+.doctors-section .btn-primary:hover,
+.appointments-section .btn-primary:hover,
+.medical-records .btn-primary:hover,
+.action-buttons .btn-primary:hover {
+  background-color: var(--secondary-color);
+}
+
+.dashboard-container .btn-outline,
+.pending-section .btn-outline,
+.doctors-section .btn-outline,
+.appointments-section .btn-outline,
+.medical-records .btn-outline,
+.action-buttons .btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.dashboard-container .btn-outline:hover,
+.pending-section .btn-outline:hover,
+.doctors-section .btn-outline:hover,
+.appointments-section .btn-outline:hover,
+.medical-records .btn-outline:hover,
+.action-buttons .btn-outline:hover {
+  background-color: var(--bg-secondary);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-color);
+}
+
+.welcome-text h1 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.welcome-text p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--bg-primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-card h3 {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card .value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.appointments-section {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.appointment-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.appointment-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.appointment-card:hover {
+  background-color: #f1f5f9;
+}
+
+.appointment-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.doctor-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.appointment-details h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.appointment-details p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.appointment-status {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+}
+
+.status-upcoming {
+  background-color: #dbeafe;
+  color: var(--primary-color);
+}
+
+.status-completed {
+  background-color: #dcfce7;
+  color: var(--success-color);
+}
+
+.status-cancelled {
+  background-color: #fee2e2;
+  color: var(--danger-color);
+}
+
+.status-upcoming,
+.status-completed,
+.status-cancelled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.btn-outline:hover {
+  background-color: var(--bg-secondary);
+}
+
+.medical-records {
+  margin-top: 2rem;
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.record-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.record-card:last-child {
+  border-bottom: none;
+}
+
+.record-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.record-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
+.record-details h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.record-details p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .appointment-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .appointment-status {
+    align-self: flex-start;
+  }
+
+  .action-buttons {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard-container > * {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Pending Requests Section */
+.pending-section {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter-buttons .btn {
+  padding: 0.375rem 0.75rem;
+}
+
+.filter-buttons .btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.pending-list {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.pending-card {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pending-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.request-info {
+  flex: 1;
+}
+
+.request-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.status-badge.pending {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.status-badge.accepted {
+  background-color: #dcfce7;
+  color: var(--success-color);
+}
+
+.status-badge.declined {
+  background-color: #fee2e2;
+  color: var(--danger-color);
+}
+
+.request-time {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.request-info h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.request-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Doctors Section */
+.doctors-section {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.search-filter {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.search-box {
+  flex: 1;
+  position: relative;
+}
+
+.search-box i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.specialization-filter {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  background-color: white;
+  cursor: pointer;
+}
+
+.doctors-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.doctor-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.doctor-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-header {
+  position: relative;
+  width: fit-content;
+}
+
+.doctor-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-color);
+}
+
+.online-status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.online-status.online {
+  background-color: var(--success-color);
+}
+
+.online-status.offline {
+  background-color: var(--text-secondary);
+}
+
+.doctor-info {
+  flex: 1;
+}
+
+.doctor-info h3 {
+  font-size: 1.125rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.specialization {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.rating i {
+  color: #f59e0b;
+  font-size: 1rem;
+}
+
+.rating span {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.quick-info {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.doctor-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+}
+
+.empty-state i {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .search-filter {
+    flex-direction: column;
+  }
+
+  .pending-card {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pending-card .action-buttons {
+    width: 100%;
+  }
+
+  .doctors-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Action buttons specific styles */
+.dashboard-container .action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Make sure these don't conflict with navbar */
+.dashboard-container .action-buttons .btn {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  height: auto;
+  min-width: auto;
+  line-height: normal;
+}
+
+/* Fix filter buttons */
+.filter-buttons .btn.active {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border-color: var(--primary-color) !important;
+} 
