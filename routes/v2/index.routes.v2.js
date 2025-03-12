@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
     try {
         res.render('home');
     } catch (error) {
-        res.render('errorPage');
+        res.render('errorpage');
     }
 });
 
@@ -19,7 +19,7 @@ router.get('/signup', (req, res, next) => {
     try {
         res.render('signUpPage');
     } catch (error) {
-        res.render('errorPage');
+        res.render('errorpage');
     }
 });
 
@@ -28,7 +28,7 @@ router.get('/logindashboard', (req, res, next) => {
     try {
         res.render('logindashboard');
     } catch (error) {
-        res.render('errorPage');
+        res.render('errorpage');
     }
 });
 
@@ -61,6 +61,11 @@ router.get('/tempDash2', Middlewares.UserAuth('usertoken'), (req, res) => {
         status: 'OK',
         message: "Demo User Dashboard!"
     });
+});
+
+// Serve error page...
+router.get('/error', (req, res, next) => {
+    res.render('errorpage');
 });
 
 

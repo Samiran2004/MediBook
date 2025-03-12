@@ -63,4 +63,20 @@ router.get(
 router.post('/updateDetails', Middlewares.DoctorAuth('doctortoken'), controllers.UpdateDoctorDetails);
 >>>>>>> ccf01f0bd71a2f00a6fa08f1bbaca47b7a3b5862
 
+/**
+ * Get all Doctors
+ * Path: /api/v1/doctors
+ * Body: isVerified: true or false
+ */
+// router.get('/doctors', Middlewares.UserAuth('usertoken'), controllers.GetAllDoctors);
+router.get('/doctors', controllers.GetAllDoctors); // For testing
+
+/**
+ * Get all doctors by spec
+ * Path: /api/v1/doctors/specality
+ * Body: specality and isVerified: true or false
+ */
+router.get('/doctors/specality', controllers.GetAllDoctorsBySpec); // For testing
+// router.get('/doctors/specality', Middlewares.UserAuth('usertoken'), controllers.GetAllDoctorsBySpec);
+
 export default router;
