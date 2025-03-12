@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 const router = express.Router();
 import controllers from "../../controllers/index.controllers.js";
 import upload from "../../middlewares/multer.middleware.js";
+import Middlewares from "../../middlewares/index.middleware.js";
 
 /**
  * Check health...
@@ -40,5 +41,11 @@ router.post('/login', controllers.Login);
 router.get('/logout', (req, res) => {
     res.clearCookie().redirect('/');
 });
+
+/**
+ * Update Doctor's Dets
+ * Path: /api/v1/updateDetails
+ */
+router.post('/updateDetails', Middlewares.DoctorAuth('doctortoken'), controllers.UpdateDoctorDetails);
 
 export default router;
