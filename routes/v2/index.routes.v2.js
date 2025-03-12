@@ -56,11 +56,8 @@ router.get('/userSignup', (req, res) => {
 });
 
 // Serve a demo user Dashboard...
-router.get('/tempDash2', Middlewares.UserAuth('usertoken'), (req, res) => {
-    res.status(StatusCodes.ACCEPTED).json({
-        status: 'OK',
-        message: "Demo User Dashboard!"
-    });
+router.get('/tempDash2',  (req, res) => {
+    res.render('patientDashboard')
 });
 
 // Serve error page...
