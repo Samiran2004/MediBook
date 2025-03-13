@@ -86,4 +86,11 @@ router.get('/doctors/specality', controllers.GetAllDoctorsBySpec); // For testin
  */
 router.post('/appoint/book', controllers.BookAppointment);
 
+/**
+ * Get all users
+ * Path: /api/v1/users
+ * Body: userid if get user by id
+ */
+router.get('/users', controllers.GetAllUsers);
+
 export default router;
