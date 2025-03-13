@@ -64,6 +64,10 @@ router.post(
  */
 router.get(
   "/getSchedule",
+  (req, res, next) => {
+    console.log("Route: /api/v1/getSchedule - Request received");
+    next();
+  },
   Middlewares.DoctorAuth("doctortoken"),
   controllers.GetDoctorSchedule
 );

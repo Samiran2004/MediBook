@@ -25,14 +25,14 @@
             <h1>Welcome, <%= user ? user.name : 'User' %>
             </h1>
             <p>Manage your appointments and medical records</p>
-            </div>
-            </div>
-            <div class="action-buttons">
-              <a href="#view-doctor">
-                <button class="btn btn-primary">Book Appointment</button>
-              </a>
-            </div>
-            </div>
+          </div>
+          </div>
+          <div class="action-buttons">
+            <a href="#view-doctor">
+              <button class="btn btn-primary">Book Appointment</button>
+            </a>
+          </div>
+          </div>
 
       <!-- Dashboard Stats -->
       <div class="dashboard-stats">
@@ -60,7 +60,7 @@
             <button class="btn btn-outline" data-filter="received">Received</button>
           </div>
         </div>
-      
+        
         <div class="pending-list">
           <!-- Sample Pending Request 1 -->
           <div class="pending-card sent-request">
@@ -93,8 +93,8 @@
               <button class="btn btn-outline">View Details</button>
             </div>
           </div>
-          </div>
-          </div>
+        </div>
+        </div>
 
       <!-- Available Doctors Section -->
       <div class="doctors-section" id="view-doctor">
@@ -108,56 +108,13 @@
               <option value="pediatrics">Pediatrics</option>
               <option value="dermatology">Dermatology</option>
             </select>
-            </div>
-            </div>
+          </div>
+          </div>
 
-        <div class="doctors-grid">
-          <% if (doctors && doctors.length> 0) { %>
-            <% doctors.forEach(doctor=> { %>
-              <div class="doctor-card">
-                <div class="doctor-header">
-                  <img src="<%= doctor.profilepic || '/assets/doctor-placeholder.png' %>" alt="Dr. <%= doctor.name %>"
-                    class="doctor-avatar">
-                  <div class="online-status <%= doctor.isOnline ? 'online' : 'offline' %>"></div>
-                  </div>
-                  <div class="doctor-info">
-                  <h3><%= doctor.name %>
-                  </h3>
-                  <p class="specialization">
-                    <%= doctor.specialization ? doctor.specialization.join(', ') : ' N/A' %>
-                  </p>
-                  <div class="rating">
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-line"></i>
-                    <span>(<%= doctor.rating || 'N/A' %>)</span>
-                    </div>
-                    <div class="quick-info">
-                      <div class="info-item">
-                        <i class="ri-user-star-line"></i>
-                      <span>
-                        <%= doctor.experience || 'N/A' %> Years
-                      </span>
-                      </div>
-                      <div class="info-item">
-                        <i class="ri-money-dollar-circle-line"></i>
-                      <span>₹<%= doctor.consultationFee || 'N/A' %></span>
-                      </div>
-                      </div>
-                      </div>
-                      <div class="doctor-actions">
-                        <button class="btn btn-primary">Book Appointment</button>
-                        <button class="btn btn-outline">View Profile</button>
-                      </div>
-                      </div>
-            <% }) %>
-              <% } else { %>
-                <p>No doctors available at the moment.</p>
-                <% } %>
-                  </div>
-                  </div>
+        <div class="doctors-grid" id="doctors-grid">
+          <!-- Doctors will be dynamically loaded here -->
+        </div>
+        </div>
 
       <!-- Appointments Section -->
       <div class="appointments-section">
@@ -202,8 +159,7 @@
             </div>
           </div>
         </div>
-        
-        </div>
+      </div>
 
       <!-- Medical Records Section -->
       <div class="medical-records">
@@ -244,14 +200,36 @@
             <button class="btn btn-outline">Download</button>
           </div>
         </div>
-        </div>
-        </div>
+      </div>
+      </div>
+
+    <!-- Modal Structure -->
+    <div id="appointmentModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Book Appointment</h2>
+        <form id="appointmentForm">
+          <input type="hidden" id="doctorId" name="doctorId">
+          <div class="form-group">
+            <label for="appointmentDate">Date</label>
+            <input type="date" id="appointmentDate" name="appointmentDate" required>
+          </div>
+          <div class="form-group">
+            <label for="timeSlot">Time Slot</label>
+            <select id="timeSlot" name="timeSlot" required>
+              <!-- Time slots will be populated here -->
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Book</button>
+        </form>
+      </div>
+    </div>
 
     <%- include('partials/footer') %>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script src="/javascripts/navbar.js"></script>
-      <script src="/javascripts/patientDashboard.js"></script>
-      </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/javascripts/navbar.js"></script>
+    <script src="/javascripts/patientDashboard.js"></script>
+    </body>
 </html>
