@@ -5,7 +5,7 @@ import updateDoctorDetailsController from "./update/update.Doctor.Details.contro
 import updateDoctorSchedule from "./update/update.schedule.controller.js";
 import getDoctorSchedule from "./dash/get.schedule.controller.js";
 import getAllDoctors from "./get/getAllDoctors.controller.js";
-import getAllDoctoreBySpec from "./get/getAllDoctorsBySpec.controller.js";
+import getAllDoctorsBySpec from "./get/getAllDoctorsBySpec.controller.js";
 import bookAppointment from "./appointment/book.appointment.controller.js";
 import getAllUsers from "./get/getAllUsers.controller.js";
 import userDashboardController from "./dash/user.dash.controller.js";
@@ -18,17 +18,14 @@ const controllers = {
   DoctorDashboard: doctorDashboardController,
   UserDashboard: userDashboardController,
   UpdateDoctorDetails: updateDoctorDetailsController,
-  SignUp: signupController,
-  Login: logincontroller,
-  UpdateDoctorDetails: updateDoctorDetailsController,
   UpdateDoctorSchedule: updateDoctorSchedule,
   GetDoctorSchedule: getDoctorSchedule,
   GetAllDoctors: getAllDoctors,
-  GetAllDoctorsBySpec: getAllDoctoreBySpec,
+  GetAllDoctorsBySpec: getAllDoctorsBySpec,
   BookAppointment: bookAppointment,
   GetAllUsers: getAllUsers,
   DeleteDoctorById: deleteDoctorByIdController,
-  DeleteUserById: deleteUserByIdController
+  DeleteUserById: deleteUserByIdController,
 };
 
 export default controllers;
