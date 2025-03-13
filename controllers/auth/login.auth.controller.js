@@ -8,45 +8,28 @@ const logincontroller = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
-            // return res.status(StatusCodes.BAD_REQUEST).json({
-            //     status: 'Failed',
-            //     message: "All fields are required!"
-            // });
             return res.render('errorpage', { errorMessage: getReasonPhrase(StatusCodes.BAD_REQUEST) });
         }
 
-        // Check if user or not...
-        const User = await Models.UserModel.findOne({ email: email });
-        if (User && User !== null) {
-            // Check Password...
-            const hashed_password = User.password;
-            const isPasswordMatch = await bcrypt.compare(password, hashed_password);
+        // ✅ Check if User
+        const User = await Models.UserModel.findOne({ email });
+        if (User) {
+            const isPasswordMatch = await bcrypt.compare(password, User.password);
             if (isPasswordMatch) {
                 const playLoad = {
                     name: User.name,
                     email: User.email,
-                    role: "user"
-                }
+                    role: "user",
+                };
                 const token = await JWT.sign(playLoad, configs.JWT_SECRET, { expiresIn: '1h' });
-                // return res.status(StatusCodes.ACCEPTED).json({
-                //     status: 'OK',
-                //     message: "Successfully Logedin!",
-                //     token: token
-                // });
-
                 return res.cookie('usertoken', token).redirect('/userDashboard');
             }
-            // return res.status(StatusCodes.UNAUTHORIZED).json({
-            //     status: 'Failed',
-            //     message: "Invalid Email or Password!"
-            // });
             return res.render('errorpage', { errorMessage: getReasonPhrase(StatusCodes.UNAUTHORIZED) });
         }
 
-        // Check if Doctor or not...
-        const Doctor = await Models.DoctorModel.findOne({ email: email });
-        if (Doctor && Doctor !== null) {
-            // Validate Password...
+        // ✅ Check if Doctor
+        const Doctor = await Models.DoctorModel.findOne({ email });
+        if (Doctor) {
             const isValidPassword = await bcrypt.compare(password, Doctor.password);
             if (isValidPassword) {
                 const playLoad = {
@@ -60,35 +43,39 @@ const logincontroller = async (req, res, next) => {
                     address: Doctor.address,
                     role: "doctor",
                 };
-                // Create token...
                 const token = await JWT.sign(playLoad, configs.JWT_SECRET);
-                // return res.status(StatusCodes.ACCEPTED).json({
-                //     status: 'OK',
-                //     message: 'Successfully Logedin!',
-                //     token: token
-                // });
-                res.cookie('doctortoken', token).redirect('/doctorDash');
-                return;
+                return res.cookie('doctortoken', token).redirect('/doctorDash');
             }
-            // return res.status(StatusCodes.UNAUTHORIZED).json({
-            //     status: 'Failed',
-            //     message: "Invalid Email or Password!"
-            // });
             return res.render('errorpage', { errorMessage: getReasonPhrase(StatusCodes.UNAUTHORIZED) });
         }
 
-        // return res.status(StatusCodes.CONFLICT).json({
-        //     status: 'Failed',
-        //     message: "Invalid Email or Password!"
-        // });
+        // ✅ Check if Admin
+        const Admin = await Models.AdminModel.findOne({ email });
+        if (Admin) {
+            // console.log("Admin Found:", Admin);
+            // console.log("Entered Password:", password);
+            // console.log("Stored Password:", Admin.password);
+
+            // If password is hashed, use bcrypt.compare
+            // const isPasswordMatch = await bcrypt.compare(password, Admin.password);
+            if (password == Admin.password) {
+                const playLoad = {
+                    _id: Admin._id,
+                    name: Admin.name,
+                    email: Admin.email,
+                };
+                const token = await JWT.sign(playLoad, configs.JWT_SECRET);
+                return res.cookie('admintoken', token).redirect('/adminDash');
+            }
+            return res.render('errorpage', { errorMessage: getReasonPhrase(StatusCodes.UNAUTHORIZED) });
+        }
+
         return res.render('errorpage', { errorMessage: getReasonPhrase(StatusCodes.CONFLICT) });
+
     } catch (error) {
-        // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-        //     status: 'Failed',
-        //     message: "Internal Server Error!"
-        // });
+        console.error("Login Error:", error);
         return res.render('errorpage', { errorMessage: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR) });
     }
-}
+};
 
 export default logincontroller;
