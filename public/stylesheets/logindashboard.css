@@ -62,7 +62,6 @@ body {
   border-radius: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   margin-bottom: 1rem; /* Added margin for spacing */
 }
