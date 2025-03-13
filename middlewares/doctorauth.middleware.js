@@ -9,24 +9,26 @@ function doctorauthmiddleware(token) {
           const tokenValue = req.cookies[token];
 
           if (!tokenValue) {
-            return res.status(StatusCodes.UNAUTHORIZED).json({
-              status: "Failed",
-              message: "Token not found!",
-            });
+            // return res.status(StatusCodes.UNAUTHORIZED).json({
+            //   status: "Failed",
+            //   message: "Token not found!",
+            // });
+            return res.render('errorpage', { errorMessage: getReasonPhrase(StatusCodes.UNAUTHORIZED) });
           }
 
           const userPayload = JWT.verify(tokenValue, configs.JWT_SECRET);
 
           if (!userPayload || !userPayload._id) {
-            return res.status(StatusCodes.UNAUTHORIZED).json({
-              status: "Failed",
-              message: "Invalid token payload",
-            });
+            // return res.status(StatusCodes.UNAUTHORIZED).json({
+            //   status: "Failed",
+            //   message: "Invalid token payload",
+            // });
+            return res.render('errorpage', { errorMessage: getReasonPhrase(StatusCodes.UNAUTHORIZED) });
           }
 
           // For Doctor...
           if (userPayload.role === "doctor") {
-            // Set both req.user and req.doctor for compatibility
+            // Set req.doctor
             req.user = {
               id: userPayload._id,
               role: userPayload.role,
@@ -36,17 +38,19 @@ function doctorauthmiddleware(token) {
             return next();
           }
 
-          return res.status(StatusCodes.UNAUTHORIZED).json({
-            status: "Failed",
-            message: "Access denied. Only doctors can access this route.",
-          });
+          // return res.status(StatusCodes.UNAUTHORIZED).json({
+          //   status: "Failed",
+          //   message: "Access denied. Only doctors can access this route.",
+          // });
+          return res.render('errorpage', { errorMessage: getReasonPhrase(StatusCodes.UNAUTHORIZED) });
         } catch (error) {
           console.error("Auth Middleware Error:", error);
-          return res.status(StatusCodes.UNAUTHORIZED).json({
-            status: "Failed",
-            message: "Authentication failed",
-            error: error.message,
-          });
+          // return res.status(StatusCodes.UNAUTHORIZED).json({
+          //   status: "Failed",
+          //   message: "Authentication failed",
+          //   error: error.message,
+          // });
+          return res.render('errorpage', { errorMessage: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR) });
         }
     }
 }

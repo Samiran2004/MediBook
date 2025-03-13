@@ -55,6 +55,9 @@ router.get('/userSignup', (req, res) => {
     res.render('userSignup')
 });
 
+// Serve Patient or User Dashboard...
+router.get('/userDashboard', Middlewares.UserAuth('usertoken'), controllers.UserDashboard);
+
 // Serve a demo user Dashboard...
 router.get('/tempDash2',  (req, res) => {
     res.render('patientDashboard')

@@ -28,11 +28,13 @@ const logincontroller = async (req, res, next) => {
                     role: "user"
                 }
                 const token = await JWT.sign(playLoad, configs.JWT_SECRET, { expiresIn: '1h' });
-                return res.status(StatusCodes.ACCEPTED).json({
-                    status: 'OK',
-                    message: "Successfully Logedin!",
-                    token: token
-                });
+                // return res.status(StatusCodes.ACCEPTED).json({
+                //     status: 'OK',
+                //     message: "Successfully Logedin!",
+                //     token: token
+                // });
+
+                return res.cookie('usertoken', token).redirect('/userDashboard');
             }
             // return res.status(StatusCodes.UNAUTHORIZED).json({
             //     status: 'Failed',
