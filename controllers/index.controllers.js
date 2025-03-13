@@ -8,11 +8,13 @@ import getAllDoctors from "./get/getAllDoctors.controller.js";
 import getAllDoctoreBySpec from "./get/getAllDoctorsBySpec.controller.js";
 import bookAppointment from "./appointment/book.appointment.controller.js";
 import getAllUsers from "./get/getAllUsers.controller.js";
+import userDashboardController from "./dash/user.dash.controller.js";
 
 const controllers = {
   SignUp: signupController,
   Login: logincontroller,
   DoctorDashboard: doctorDashboardController,
+  UserDashboard: userDashboardController,
   UpdateDoctorDetails: updateDoctorDetailsController,
   SignUp: signupController,
   Login: logincontroller,
