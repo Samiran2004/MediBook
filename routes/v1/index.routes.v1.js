@@ -80,4 +80,17 @@ router.get('/doctors', controllers.GetAllDoctors); // For testing
 router.get('/doctors/specality', controllers.GetAllDoctorsBySpec); // For testing
 // router.get('/doctors/specality', Middlewares.UserAuth('usertoken'), controllers.GetAllDoctorsBySpec);
 
+/**
+ * Book an appointment
+ * Path: /api/v1/appoint/book
+ */
+router.post('/appoint/book', controllers.BookAppointment);
+
+/**
+ * Get all users
+ * Path: /api/v1/users
+ * Body: userid if get user by id
+ */
+router.get('/users', controllers.GetAllUsers);
+
 export default router;
