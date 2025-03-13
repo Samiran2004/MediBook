@@ -1,5 +1,5 @@
 import express from 'express';
-import { StatusCodes } from 'http-status-codes';
+import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 import Middlewares from '../../middlewares/index.middleware.js';
 import controllers from "../../controllers/index.controllers.js";
 
@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
     try {
         res.render('home');
     } catch (error) {
-        res.render('errorpage');
+        res.render('errorpage', {errorMessage: getReasonPhrase(StatusCodes.CONFLICT)});
     }
 });
 
@@ -19,7 +19,7 @@ router.get('/signup', (req, res, next) => {
     try {
         res.render('signUpPage');
     } catch (error) {
-        res.render('errorpage');
+        res.render('errorpage', {errorMessage: getReasonPhrase(StatusCodes.CONFLICT)});
     }
 });
 
@@ -28,7 +28,7 @@ router.get('/logindashboard', (req, res, next) => {
     try {
         res.render('logindashboard');
     } catch (error) {
-        res.render('errorpage');
+        res.render('errorpage', {errorMessage: getReasonPhrase(StatusCodes.CONFLICT)});
     }
 });
 
@@ -55,6 +55,9 @@ router.get('/userSignup', (req, res) => {
     res.render('userSignup')
 });
 
+// Serve Patient or User Dashboard...
+router.get('/userDashboard', Middlewares.UserAuth('usertoken'), controllers.UserDashboard);
+
 // Serve a demo user Dashboard...
 router.get('/tempDash2',  (req, res) => {
     res.render('patientDashboard')
@@ -62,7 +65,7 @@ router.get('/tempDash2',  (req, res) => {
 
 // Serve error page...
 router.get('/error', (req, res, next) => {
-    res.render('errorpage');
+    res.render('errorpage', { errorMessage: getReasonPhrase(StatusCodes.CONFLICT) });
 });
 
 
