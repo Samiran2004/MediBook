@@ -4,30 +4,38 @@ import Models from "../../models/index.models.js";
 const deleteDoctorByIdController = async (req, res) => {
     try {
         const { doctorid } = req.body;
+
+        // Validate doctor ID
         if (!doctorid) {
             return res.status(StatusCodes.BAD_REQUEST).json({
                 status: 'Failed',
-                message: "Please provide the doctor's id!"
+                message: "Please provide the doctor's ID!"
             });
         }
-        try {
-            await Models.DoctorModel.findByIdAndDelete(doctorid);
-            return res.status(StatusCodes.OK).json({
-                status: 'OK',
-                message: "Doctor deleted!"
+
+        // Find and delete the doctor
+        const deletedDoctor = await Models.DoctorModel.findByIdAndDelete(doctorid);
+
+        if (!deletedDoctor) {
+            return res.status(StatusCodes.NOT_FOUND).json({
+                status: 'Failed',
+                message: `Doctor with ID ${doctorid} not found!`
             });
-        } catch (error) {
-          return res.status(StatusCodes.BAD_REQUEST).json({
-            status: "Failed",
-            message: `${doctorid} is not a valid doctor's id!`,
-          });
         }
+
+        return res.status(StatusCodes.OK).json({
+            status: 'OK',
+            message: "Doctor deleted successfully!",
+            deletedDoctor,  // Optionally return deleted data
+        });
+
     } catch (error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             status: 'Failed',
-            message: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR)
+            message: "Server error occurred!",
+            error: error.message
         });
     }
-}
+};
 
 export default deleteDoctorByIdController;
