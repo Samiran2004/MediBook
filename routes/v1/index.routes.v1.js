@@ -8,6 +8,7 @@ import Middlewares from "../../middlewares/index.middleware.js";
 /**
  * Check health...
  * path: /api/v1/health
+ * Permission: All
  */
 router.get("/health", (req, res, next) => {
   try {
