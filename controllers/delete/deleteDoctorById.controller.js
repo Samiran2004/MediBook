@@ -21,7 +21,7 @@ const deleteDoctorByIdController = async (req, res) => {
                 status: 'Failed',
                 message: `${doctorid} is not a valid doctor's id!`
             });
-        } ``
+        }
     } catch (error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             status: 'Failed',
