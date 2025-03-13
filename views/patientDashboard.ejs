@@ -22,13 +22,14 @@
   <div class="dashboard-header">
     <div class="welcome-section">
       <div class="welcome-text">
-        <h1>Welcome, John Doe</h1>
+        <h1>Welcome, <%- user.name %></h1>
         <p>Manage your appointments and medical records</p>
       </div>
     </div>
     <div class="action-buttons">
-      <button class="btn btn-primary">Book Appointment</button>
-      <button class="btn btn-outline">View Profile</button>
+      <a href="#view-doctor">
+        <button class="btn btn-primary">Book Appointment</button>
+      </a>
     </div>
   </div>
 
@@ -95,7 +96,7 @@
   </div>
 
   <!-- Available Doctors Section -->
-  <div class="doctors-section">
+  <div class="doctors-section" id="view-doctor">
     <div class="section-header">
       <h2>Available Doctors</h2>
       <div class="search-filter">
@@ -280,5 +281,6 @@
   referrerpolicy="no-referrer"
 ></script>
 <script src="/javascripts/navbar.js"></script>
+<script src="/javascripts/patientDashboard.js"></script>
 </body>
 </html>
