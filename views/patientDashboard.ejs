@@ -17,270 +17,241 @@
   <body>
     <%- include('partials/navbar') %>
 
-<div class="dashboard-container">
-  <!-- Dashboard Header -->
-  <div class="dashboard-header">
-    <div class="welcome-section">
-      <div class="welcome-text">
-        <h1>Welcome, <%- user.name %></h1>
-        <p>Manage your appointments and medical records</p>
-      </div>
-    </div>
-    <div class="action-buttons">
-      <a href="#view-doctor">
-        <button class="btn btn-primary">Book Appointment</button>
-      </a>
-    </div>
-  </div>
-
-  <!-- Dashboard Stats -->
-  <div class="dashboard-stats">
-    <div class="stat-card">
-      <h3>Upcoming Appointments</h3>
-      <div class="value">3</div>
-    </div>
-    <div class="stat-card">
-      <h3>Completed Visits</h3>
-      <div class="value">12</div>
-    </div>
-    <div class="stat-card">
-      <h3>Medical Records</h3>
-      <div class="value">5</div>
-    </div>
-  </div>
-
-  <!-- Pending Requests Section -->
-  <div class="pending-section">
-    <div class="section-header">
-      <h2>Pending Requests</h2>
-      <div class="filter-buttons">
-        <button class="btn btn-outline active" data-filter="all">All</button>
-        <button class="btn btn-outline" data-filter="sent">Sent</button>
-        <button class="btn btn-outline" data-filter="received">Received</button>
-      </div>
-    </div>
-    
-    <div class="pending-list">
-      <!-- Sample Pending Request 1 -->
-      <div class="pending-card sent-request">
-        <div class="request-info">
-          <div class="request-status">
-            <span class="status-badge pending">Pending</span>
-            <p class="request-time">March 15, 2024</p>
-          </div>
-          <h3>Appointment Request with Dr. Smith</h3>
-          <p class="request-description">General checkup and consultation for recurring headaches</p>
-        </div>
-        <div class="action-buttons">
-          <button class="btn btn-primary">Accept</button>
-          <button class="btn btn-outline" style="color: var(--danger-color);">Decline</button>
-          <button class="btn btn-outline">View Details</button>
-        </div>
-      </div>
-
-      <!-- Sample Pending Request 2 -->
-      <div class="pending-card received-request">
-        <div class="request-info">
-          <div class="request-status">
-            <span class="status-badge accepted">Accepted</span>
-            <p class="request-time">March 14, 2024</p>
-          </div>
-          <h3>Follow-up Consultation</h3>
-          <p class="request-description">Review of recent test results with Dr. Johnson</p>
-        </div>
-        <div class="action-buttons">
-          <button class="btn btn-outline">View Details</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Available Doctors Section -->
-  <div class="doctors-section" id="view-doctor">
-    <div class="section-header">
-      <h2>Available Doctors</h2>
-      <div class="search-filter">
-        <div class="search-box">
-          <i class="ri-search-line"></i>
-          <input type="text" placeholder="Search by name or specialization">
-        </div>
-        <select class="specialization-filter">
-          <option value="">All Specializations</option>
-          <option value="cardiology">Cardiology</option>
-          <option value="neurology">Neurology</option>
-          <option value="pediatrics">Pediatrics</option>
-          <option value="dermatology">Dermatology</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="doctors-grid">
-      <!-- Sample Doctor Card 1 -->
-      <div class="doctor-card">
-        <div class="doctor-header">
-          <img src="" alt="Dr. Sarah Smith" class="doctor-avatar">
-          <div class="online-status online"></div>
-        </div>
-        <div class="doctor-info">
-          <h3>Dr. Sarah Smith</h3>
-          <p class="specialization">Cardiologist</p>
-          <div class="rating">
-            <i class="ri-star-fill"></i>
-            <i class="ri-star-fill"></i>
-            <i class="ri-star-fill"></i>
-            <i class="ri-star-fill"></i>
-            <i class="ri-star-line"></i>
-            <span>(127)</span>
-          </div>
-          <div class="quick-info">
-            <div class="info-item">
-              <i class="ri-user-star-line"></i>
-              <span>15 Years</span>
+    <div class="dashboard-container">
+      <!-- Dashboard Header -->
+      <div class="dashboard-header">
+        <div class="welcome-section">
+          <div class="welcome-text">
+            <h1>Welcome, <%= user ? user.name : 'User' %>
+            </h1>
+            <p>Manage your appointments and medical records</p>
             </div>
-            <div class="info-item">
-              <i class="ri-money-dollar-circle-line"></i>
-              <span>₹1500</span>
+            </div>
+            <div class="action-buttons">
+              <a href="#view-doctor">
+                <button class="btn btn-primary">Book Appointment</button>
+              </a>
+            </div>
+            </div>
+
+      <!-- Dashboard Stats -->
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <h3>Upcoming Appointments</h3>
+          <div class="value">3</div>
+        </div>
+        <div class="stat-card">
+          <h3>Completed Visits</h3>
+          <div class="value">12</div>
+        </div>
+        <div class="stat-card">
+          <h3>Medical Records</h3>
+          <div class="value">5</div>
+        </div>
+      </div>
+
+      <!-- Pending Requests Section -->
+      <div class="pending-section">
+        <div class="section-header">
+          <h2>Pending Requests</h2>
+          <div class="filter-buttons">
+            <button class="btn btn-outline active" data-filter="all">All</button>
+            <button class="btn btn-outline" data-filter="sent">Sent</button>
+            <button class="btn btn-outline" data-filter="received">Received</button>
+          </div>
+        </div>
+      
+        <div class="pending-list">
+          <!-- Sample Pending Request 1 -->
+          <div class="pending-card sent-request">
+            <div class="request-info">
+              <div class="request-status">
+                <span class="status-badge pending">Pending</span>
+                <p class="request-time">March 15, 2024</p>
+              </div>
+              <h3>Appointment Request with Dr. Smith</h3>
+              <p class="request-description">General checkup and consultation for recurring headaches</p>
+            </div>
+            <div class="action-buttons">
+              <button class="btn btn-primary">Accept</button>
+              <button class="btn btn-outline" style="color: var(--danger-color);">Decline</button>
+              <button class="btn btn-outline">View Details</button>
             </div>
           </div>
-        </div>
-        <div class="doctor-actions">
-          <button class="btn btn-primary">Book Appointment</button>
-          <button class="btn btn-outline">View Profile</button>
-        </div>
-      </div>
 
-      <!-- Sample Doctor Card 2 -->
-      <div class="doctor-card">
-        <div class="doctor-header">
-          <img src="" alt="Dr. John Wilson" class="doctor-avatar">
-          <div class="online-status offline"></div>
-        </div>
-        <div class="doctor-info">
-          <h3>Dr. John Wilson</h3>
-          <p class="specialization">Neurologist</p>
-          <div class="rating">
-            <i class="ri-star-fill"></i>
-            <i class="ri-star-fill"></i>
-            <i class="ri-star-fill"></i>
-            <i class="ri-star-fill"></i>
-            <i class="ri-star-fill"></i>
-            <span>(243)</span>
-          </div>
-          <div class="quick-info">
-            <div class="info-item">
-              <i class="ri-user-star-line"></i>
-              <span>20 Years</span>
+          <!-- Sample Pending Request 2 -->
+          <div class="pending-card received-request">
+            <div class="request-info">
+              <div class="request-status">
+                <span class="status-badge accepted">Accepted</span>
+                <p class="request-time">March 14, 2024</p>
+              </div>
+              <h3>Follow-up Consultation</h3>
+              <p class="request-description">Review of recent test results with Dr. Johnson</p>
             </div>
-            <div class="info-item">
-              <i class="ri-money-dollar-circle-line"></i>
-              <span>₹2000</span>
+            <div class="action-buttons">
+              <button class="btn btn-outline">View Details</button>
             </div>
           </div>
-        </div>
-        <div class="doctor-actions">
-          <button class="btn btn-primary">Book Appointment</button>
-          <button class="btn btn-outline">View Profile</button>
-        </div>
-      </div>
-    </div>
-  </div>
+          </div>
+          </div>
 
-  <!-- Appointments Section -->
-  <div class="appointments-section">
-    <div class="section-header">
-      <h2>Your Appointments</h2>
-      <button class="btn btn-outline">View All</button>
-    </div>
-    
-    <div class="appointment-card">
-      <div class="appointment-info">
-        <img src="" alt="Doctor" class="doctor-avatar">
-        <div class="appointment-details">
-          <h3>Dr. Michael Brown</h3>
-          <p>Pediatrician</p>
-          <p>March 20, 2024 at 10:30 AM</p>
-        </div>
-      </div>
-    
-      <div class="status-actions">
-        <span class="appointment-status status-upcoming">Upcoming</span>
-        <div class="action-buttons">
-          <button class="btn btn-outline">Reschedule</button>
-          <button class="btn btn-outline" style="color: var(--danger-color);">Cancel</button>
-        </div>
-      </div>
-    </div>
+      <!-- Available Doctors Section -->
+      <div class="doctors-section" id="view-doctor">
+        <div class="section-header">
+          <h2>Available Doctors</h2>
+          <div class="search-filter">
+            <select class="specialization-filter">
+              <option value="">All Specializations</option>
+              <option value="cardiology">Cardiology</option>
+              <option value="neurology">Neurology</option>
+              <option value="pediatrics">Pediatrics</option>
+              <option value="dermatology">Dermatology</option>
+            </select>
+            </div>
+            </div>
 
-    <div class="appointment-card">
-      <div class="appointment-info">
-        <img src="" alt="Doctor" class="doctor-avatar">
-        <div class="appointment-details">
-          <h3>Dr. Michael Brown</h3>
-          <p>Pediatrician</p>
-          <p>March 20, 2024 at 10:30 AM</p>
-        </div>
-      </div>
-    
-      <div class="status-actions">
-        <span class="appointment-status status-completed">Complete</span>
-        <div class="action-buttons">
-          <button class="btn btn-outline">View</button>
-        </div>
-      </div>
-    </div>
-    
-  </div>
+        <div class="doctors-grid">
+          <% if (doctors && doctors.length> 0) { %>
+            <% doctors.forEach(doctor=> { %>
+              <div class="doctor-card">
+                <div class="doctor-header">
+                  <img src="<%= doctor.profilepic || '/assets/doctor-placeholder.png' %>" alt="Dr. <%= doctor.name %>"
+                    class="doctor-avatar">
+                  <div class="online-status <%= doctor.isOnline ? 'online' : 'offline' %>"></div>
+                  </div>
+                  <div class="doctor-info">
+                  <h3><%= doctor.name %>
+                  </h3>
+                  <p class="specialization">
+                    <%= doctor.specialization ? doctor.specialization.join(', ') : ' N/A' %>
+                  </p>
+                  <div class="rating">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-line"></i>
+                    <span>(<%= doctor.rating || 'N/A' %>)</span>
+                    </div>
+                    <div class="quick-info">
+                      <div class="info-item">
+                        <i class="ri-user-star-line"></i>
+                      <span>
+                        <%= doctor.experience || 'N/A' %> Years
+                      </span>
+                      </div>
+                      <div class="info-item">
+                        <i class="ri-money-dollar-circle-line"></i>
+                      <span>₹<%= doctor.consultationFee || 'N/A' %></span>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="doctor-actions">
+                        <button class="btn btn-primary">Book Appointment</button>
+                        <button class="btn btn-outline">View Profile</button>
+                      </div>
+                      </div>
+            <% }) %>
+              <% } else { %>
+                <p>No doctors available at the moment.</p>
+                <% } %>
+                  </div>
+                  </div>
 
-  <!-- Medical Records Section -->
-  <div class="medical-records">
-    <div class="section-header">
-      <h2>Medical Records</h2>
-      <button class="btn btn-outline">Upload New</button>
-    </div>
+      <!-- Appointments Section -->
+      <div class="appointments-section">
+        <div class="section-header">
+          <h2>Your Appointments</h2>
+          <button class="btn btn-outline">View All</button>
+        </div>
+      
+        <div class="appointment-card">
+          <div class="appointment-info">
+            <img src="" alt="Doctor" class="doctor-avatar">
+            <div class="appointment-details">
+              <h3>Dr. Michael Brown</h3>
+              <p>Pediatrician</p>
+              <p>March 20, 2024 at 10:30 AM</p>
+            </div>
+          </div>
+      
+          <div class="status-actions">
+            <span class="appointment-status status-upcoming">Upcoming</span>
+            <div class="action-buttons">
+              <button class="btn btn-outline">Reschedule</button>
+              <button class="btn btn-outline" style="color: var(--danger-color);">Cancel</button>
+            </div>
+          </div>
+        </div>
 
-    <!-- Sample Medical Records -->
-    <div class="record-card">
-      <div class="record-info">
-        <div class="record-icon">
-          <i class="ri-file-text-line"></i>
+        <div class="appointment-card">
+          <div class="appointment-info">
+            <img src="" alt="Doctor" class="doctor-avatar">
+            <div class="appointment-details">
+              <h3>Dr. Michael Brown</h3>
+              <p>Pediatrician</p>
+              <p>March 20, 2024 at 10:30 AM</p>
+            </div>
+          </div>
+        
+          <div class="status-actions">
+            <span class="appointment-status status-completed">Complete</span>
+            <div class="action-buttons">
+              <button class="btn btn-outline">View</button>
+            </div>
+          </div>
         </div>
-        <div class="record-details">
-          <h3>Blood Test Results</h3>
-          <p>Uploaded on March 12, 2024</p>
+        
         </div>
-      </div>
-      <div class="action-buttons">
-        <button class="btn btn-outline">View</button>
-        <button class="btn btn-outline">Download</button>
-      </div>
-    </div>
 
-    <div class="record-card">
-      <div class="record-info">
-        <div class="record-icon">
-          <i class="ri-file-text-line"></i>
+      <!-- Medical Records Section -->
+      <div class="medical-records">
+        <div class="section-header">
+          <h2>Medical Records</h2>
+          <button class="btn btn-outline">Upload New</button>
         </div>
-        <div class="record-details">
-          <h3>X-Ray Report</h3>
-          <p>Uploaded on March 5, 2024</p>
-        </div>
-      </div>
-      <div class="action-buttons">
-        <button class="btn btn-outline">View</button>
-        <button class="btn btn-outline">Download</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<%- include('partials/footer') %>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-  integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-></script>
-<script src="/javascripts/navbar.js"></script>
-<script src="/javascripts/patientDashboard.js"></script>
-</body>
+        <!-- Sample Medical Records -->
+        <div class="record-card">
+          <div class="record-info">
+            <div class="record-icon">
+              <i class="ri-file-text-line"></i>
+            </div>
+            <div class="record-details">
+              <h3>Blood Test Results</h3>
+              <p>Uploaded on March 12, 2024</p>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button class="btn btn-outline">View</button>
+            <button class="btn btn-outline">Download</button>
+          </div>
+        </div>
+
+        <div class="record-card">
+          <div class="record-info">
+            <div class="record-icon">
+              <i class="ri-file-text-line"></i>
+            </div>
+            <div class="record-details">
+              <h3>X-Ray Report</h3>
+              <p>Uploaded on March 5, 2024</p>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button class="btn btn-outline">View</button>
+            <button class="btn btn-outline">Download</button>
+          </div>
+        </div>
+        </div>
+        </div>
+
+    <%- include('partials/footer') %>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="/javascripts/navbar.js"></script>
+      <script src="/javascripts/patientDashboard.js"></script>
+      </body>
 </html>

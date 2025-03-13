@@ -20,7 +20,6 @@ const controllers = {
   UpdateDoctorDetails: updateDoctorDetailsController,
   SignUp: signupController,
   Login: logincontroller,
-  DoctorDashboard: doctorDashboardController,
   UpdateDoctorDetails: updateDoctorDetailsController,
   UpdateDoctorSchedule: updateDoctorSchedule,
   GetDoctorSchedule: getDoctorSchedule,
