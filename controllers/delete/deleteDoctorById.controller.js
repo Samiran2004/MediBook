@@ -1,5 +1,5 @@
 import { getReasonPhrase, StatusCodes } from "http-status-codes";
-import Models from "../../models/index.models";
+import Models from "../../models/index.models.js";
 
 const deleteDoctorByIdController = async (req, res) => {
     try {
