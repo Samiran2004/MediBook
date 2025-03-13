@@ -10,6 +10,7 @@ import bookAppointment from "./appointment/book.appointment.controller.js";
 import getAllUsers from "./get/getAllUsers.controller.js";
 import userDashboardController from "./dash/user.dash.controller.js";
 import deleteDoctorByIdController from "./delete/deleteDoctorById.controller.js";
+import deleteUserByIdController from "./delete/deleteUserById.controller.js";
 
 const controllers = {
   SignUp: signupController,
@@ -27,7 +28,8 @@ const controllers = {
   GetAllDoctorsBySpec: getAllDoctoreBySpec,
   BookAppointment: bookAppointment,
   GetAllUsers: getAllUsers,
-  DeleteDoctorById: deleteDoctorByIdController
+  DeleteDoctorById: deleteDoctorByIdController,
+  DeleteUserById: deleteUserByIdController
 };
 
 export default controllers;

@@ -1,26 +1,27 @@
 import { getReasonPhrase, StatusCodes } from "http-status-codes";
 import Models from "../../models/index.models.js";
 
-const deleteDoctorByIdController = async (req, res) => {
+const deleteUserByIdController = async (req, res) => {
     try {
-        const { doctorid } = req.body;
-        if (!doctorid) {
+        const { userid } = req.body;
+        if (!userid) {
             return res.status(StatusCodes.BAD_REQUEST).json({
                 status: 'Failed',
-                message: "Please provide the doctor's id!"
+                message: "Please provide the user id!"
             });
         }
         try {
-            await Models.DoctorModel.findByIdAndDelete(doctorid);
-            return res.status(StatusCodes.OK).json({
-                status: 'OK',
-                message: "Doctor deleted!"
+            await Models.UserModel.findByIdAndDelete(userid);
+            return res.status(StatusCodes.BAD_REQUEST).json({
+                status: "OK",
+                message: "User deleted!"
             });
         } catch (error) {
             return res.status(StatusCodes.BAD_REQUEST).json({
                 status: 'Failed',
-                message: `${doctorid} is not a valid doctor's id!`
+                message: `${userid} is not a valid user's id!`
             });
+        }
     } catch (error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             status: 'Failed',
@@ -29,4 +30,4 @@ const deleteDoctorByIdController = async (req, res) => {
     }
 }
 
-export default deleteDoctorByIdController;
+export default deleteUserByIdController;
