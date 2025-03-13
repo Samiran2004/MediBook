@@ -119,4 +119,12 @@ router.get('/users', controllers.GetAllUsers);
  */
 router.delete('/doctor', controllers.DeleteDoctorById); // For testing
 
+/**
+ * Delete user by id
+ * Path: /api/v1/user
+ * Body: userid
+ * Permission: Admin
+ */
+router.delete('/user', controllers.DeleteUserById); // For testing
+
 export default router;
